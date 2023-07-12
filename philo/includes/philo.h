@@ -10,5 +10,11 @@ typedef enum s_error
 
 //ERRORS//
 void    print_err(t_error_code err);
+void    check_arguments(int argc, char *argv[]);
+
+
+//LIBFT FUNCTIONS//
+int ft_isdigit(int c);
+
 
 #endif
