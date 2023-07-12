@@ -21,7 +21,7 @@ LIGHT_GREEN = \033[1;92m
 
 ###
 
-SRC         =	main.c
+SRC         =	main.c print_err.c
 
 OBJS        =	$(addprefix $(OBJS_PATH), $(SRC:.c=.o)) 
 				
