@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "philo.h"
 
-void    print_err(t_error_code err)
+void    print_err(int err)
 {
     if (err == INVALID_NUMBER)
         printf("Invalid number of arguments. See subject.\n");

@@ -9,7 +9,7 @@ typedef enum s_error
 }t_error_code;
 
 //ERRORS//
-void    print_err(t_error_code err);
+void    print_err(int err);
 void    check_arguments(int argc, char *argv[]);
 
 

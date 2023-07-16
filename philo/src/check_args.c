@@ -33,8 +33,8 @@ int ck_argv_content(char *argv[])
 
 void check_arguments(int argc, char *argv[])
 {
-    if ((argc != 5 && argc != 6))
-        print_err((t_error_code)INVALID_NUMBER);
+    if ((argc < 5 || argc > 6))
+        print_err(INVALID_NUMBER);
     if (!ck_argv_content(argv))
-        print_err((t_error_code)INVALID_CONTENT);
+        print_err(INVALID_CONTENT);
 }
