@@ -23,18 +23,33 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	get_sign(int *k, char *argv)
+
+void	check_white_space(int *k, char *argv)
+{
+	while (argv[*k] != '+' && argv[*k] != '-' && !ft_isdigit(argv[*k]))
+	{
+		if (argv[(*k)] == '\f' || argv[(*k)] == '\n' \
+		|| argv[(*k)] == '\r' || argv[(*k)] == '\t' \
+		|| argv[(*k)] == '\t' || argv[(*k)] == ' ')
+		{
+			(*k) += 1;
+		}
+
+	}
+}
+
+int	get_sign(int *k, int *white, char *argv)
 {
 	int	sign;
-	int	i;
 
-	i = (*k);
+	check_white_space(k , argv);
+	*white = *k;
 	sign = 0;
-	if ((argv[i] == '-' || argv[i] == '+') && ft_isdigit(argv[i + 1]))
+	if ((argv[(*k)] == '-' || argv[*k] == '+') && ft_isdigit(argv[*k + 1]))
 	{
-		if (argv[i] == '-' )
+		if (argv[*k] == '-' )
 			sign = -1;
-		else if (argv[i] == '+')
+		else if (argv[*k] == '+')
 			sign = 1;
 		(*k)++;
 	}
@@ -46,13 +61,15 @@ int	get_sign(int *k, char *argv)
 int	check_if_int(char *str)
 {
 	int	i;
+	int	white;
 	int	sign;
 
 	i = 0;
-	sign = get_sign(&i, str);
+	white = 0;
+	sign = get_sign(&i, &white, str);
 	while (str[i])
 	{
-		if ((sign && i == 10) || (!sign && i == 9))
+		if ((sign && (i - white) == 10) || (!sign && (i - white) == 9))
 			return (check_last_digit(sign, str, i));
 		if (!ft_isdigit(str[i]))
 			return (0);
