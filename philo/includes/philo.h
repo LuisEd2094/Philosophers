@@ -21,7 +21,6 @@ int     ft_isspace(char chr);
 size_t  ft_strlen(const char *s);
 void    remove_white_space(char *argv);
 int     check_if_white_right_left(char *argv);
-
-
+int     get_sign(char *argv);
 
 #endif
