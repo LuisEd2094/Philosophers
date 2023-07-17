@@ -14,7 +14,7 @@ void    check_arguments(int argc, char *argv[]);
 
 
 //LIBFT FUNCTIONS//
-int ft_isdigit(int c);
+int	check_if_int(char *str);
 
 
 #endif

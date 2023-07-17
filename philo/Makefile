@@ -22,7 +22,7 @@ LIGHT_GREEN = \033[1;92m
 
 ###
 
-SRC         =	main.c print_err.c check_args.c ft_isdigit.c
+SRC         =	main.c print_err.c check_args.c ft_check_if_int.c
 
 OBJS        =	$(addprefix $(OBJS_PATH), $(SRC:.c=.o)) 
 				
