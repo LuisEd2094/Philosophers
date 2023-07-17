@@ -1,7 +1,4 @@
-int	get_sign(char *argv);
-
-
-int	check_last_digit(int sign, char *argv, int i)
+static int	check_last_digit(int sign, char *argv, int i)
 {
 	if (argv[i + 1] != '\0')
 		return (0);
@@ -19,11 +16,30 @@ int	check_last_digit(int sign, char *argv, int i)
 	}
 }
 
-int	ft_isdigit(int c)
+static int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
+}
+
+static int	get_sign(char *argv)
+{
+	int	sign;
+	int i;
+
+	sign = 0;
+	i = 0;
+	if ((argv[i] == '-' || argv[i] == '+'))
+	{
+		if (argv[i] == '-' )
+			sign = -1;
+		else if (argv[i] == '+')
+			sign = 1;
+	}
+	else
+		sign = 0;
+	return (sign);
 }
 
 int	check_if_int(char *str)
