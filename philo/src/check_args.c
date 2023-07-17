@@ -1,5 +1,15 @@
 #include "philo.h"
 
+#include <stdio.h>
+
+
+int check_if_white_right_left(char *argv)
+{
+    if (ft_isspace(argv[0]) || ft_isspace(argv[ft_strlen(argv) - 1]))
+        return(1);
+    return(0);
+}
+
 int ck_argv_content(char *argv[])
 {
     int i;
@@ -7,7 +17,10 @@ int ck_argv_content(char *argv[])
     i = 1;
     while(argv[i])
     {
-        if (!argv[i][0] ||!check_if_int(argv[i]))
+        printf("%s\n", argv[i]);
+        if (check_if_white_right_left(argv[i]))
+            remove_white_space(argv[i]);
+        if (!argv[i][0] || !check_if_int(argv[i]))
             return (0);
         i++;
     }

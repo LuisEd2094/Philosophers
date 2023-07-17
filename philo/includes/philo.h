@@ -1,6 +1,8 @@
 #ifndef PHILO_H
 # define PHILO_H
 
+#include <stddef.h>
+
 typedef enum s_error
 {
     OK,
@@ -14,7 +16,11 @@ void    check_arguments(int argc, char *argv[]);
 
 
 //LIBFT FUNCTIONS//
-int	check_if_int(char *str);
+int     check_if_int(char *str);
+int     ft_isspace(char chr);
+size_t  ft_strlen(const char *s);
+void    remove_white_space(char *argv);
+
 
 
 #endif
