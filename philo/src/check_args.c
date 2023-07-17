@@ -17,7 +17,6 @@ int ck_argv_content(char *argv[])
     i = 1;
     while(argv[i])
     {
-        printf("%s\n", argv[i]);
         if (check_if_white_right_left(argv[i]))
             remove_white_space(argv[i]);
         if (!argv[i][0] || !check_if_int(argv[i]))
