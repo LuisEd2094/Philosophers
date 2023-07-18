@@ -24,7 +24,8 @@ LIGHT_GREEN = \033[1;92m
 
 SRC         =	main.c print_err.c check_args.c ft_check_if_int.c \
 				ft_isspace.c ft_strlen.c ft_remove_white_space.c \
-				check_if_white_right_left.c ft_get_sign.c ft_atoi.c
+				check_if_white_right_left.c ft_get_sign.c ft_atoi.c \
+				aux.c
 
 OBJS        =	$(addprefix $(OBJS_PATH), $(SRC:.c=.o)) 
 				

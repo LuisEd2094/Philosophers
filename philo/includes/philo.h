@@ -27,7 +27,7 @@ the max number accepted is 300.\n"
 # define ARG_INVALID_TIME "The max time to die, eat and/or think accepted is  \
 20000.\n"
 # define ARG_ZERO_VALUE "Arguments can't have zero or negative value.\n"
-# define ARG_INT_VALUE "Please provide a int value for an argument.\n"
+# define ARG_INT_VALUE "Please provide an int value for an argument.\n"
 
 
 
@@ -53,6 +53,8 @@ typedef struct s_prg
 //ERRORS//
 void    print_err(int err);
 void    check_arguments(int argc, char *argv[]);
+void    remove_white_space_arguments(char *argv[]);
+
 
 
 //LIBFT FUNCTIONS//
