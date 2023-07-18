@@ -11,7 +11,8 @@ int ck_argv_content(char *argv[])
     {
         if (check_if_white_right_left(argv[i]))
             remove_white_space(argv[i]);
-        if (!argv[i][0] || !check_if_int(argv[i]) || get_sign(argv[i]) == -1)
+        if (!argv[i][0] || !check_if_int(argv[i]) || \
+        get_sign(argv[i]) == -1 || ft_atoi(argv[i]) == 0)
             return (0);
         i++;
     }

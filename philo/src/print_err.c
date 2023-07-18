@@ -5,9 +5,8 @@
 void    print_err(int err)
 {
     if (err == INVALID_NUMBER)
-        printf("Invalid number of arguments. See subject.\n");
+        printf(ARG_ERROR_NUM);
     else if (err == INVALID_CONTENT)
-        printf("One of your arguments is invalid, \
-check subject and try again.\n");
+        printf(ARG_ERROR_CONTENT);
     exit (1);
 }
