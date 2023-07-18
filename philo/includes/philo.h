@@ -54,6 +54,8 @@ typedef struct s_prg
 void    print_err(int err);
 void    check_arguments(int argc, char *argv[]);
 void    remove_white_space_arguments(char *argv[]);
+void    parse_arguments(int argc, char *argv[]);
+
 
 
 
@@ -65,6 +67,7 @@ void    remove_white_space(char *argv);
 int     check_if_white_right_left(char *argv);
 int     get_sign(char *argv);
 int     ft_atoi(const char *nptr);
+void    remove_zeros(char *str);
 
 
 #endif
