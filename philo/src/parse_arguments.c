@@ -24,6 +24,7 @@ void parse_arguments(int argc, char *argv[])
         if (check_if_white_right_left(argv[i]))
             remove_white_space(argv[i]);
         remove_zeros(argv[i]);
+        i++;
     }
     check_arguments(argc, argv);
 }
