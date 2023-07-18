@@ -2,22 +2,50 @@
 # define PHILO_H
 
 # include <stddef.h>
+# include <pthread.h>
+
 
 typedef enum s_error
 {
     OK,
     INVALID_NUMBER,
-    INVALID_CONTENT
+    INVALID_CONTENT,
+    INVALID_PHILOS,
+    INVALID_TIME
 } t_error_code;
+
+#define STR_HELPER(x) #x
+#define STR(x) STR_HELPER(x)
+
+# define MAX_PHILOS 300
+# define MAX_TIME   2000
 
 # define ARG_ERROR_NUM "Invalid number of arguments. See subject.\n"
 # define ARG_ERROR_CONTENT "One of your arguments is invalid, \
 check subject and try again.\n"
+# define ARG_INVALID_PHILOS "You have given too many Philos, \
+the max number accepted is " STR(MAX_PHILOS)  ".\n"
+# define ARG_INVALID_TIME "The max time to die, eat and/or think accepted is " \
+STR(MAX_TIME) ".\n"
+
+
+
+
 
 typedef struct s_prg
 {
-    int test;
-    char *str;
+    pthread_t       *tid;
+    int             philo_num;
+    int             meals_nb;
+    int             dead;
+    int             finished;
+    int             death_time;
+    int             eat_time;
+    int             sleep_time;
+    int             start_time;
+    pthread_mutex_t *forks;
+    pthread_mutex_t lock;
+    pthread_mutex_t write;
 }t_prg;
 
 

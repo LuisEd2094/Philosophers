@@ -8,5 +8,9 @@ void    print_err(int err)
         printf(ARG_ERROR_NUM);
     else if (err == INVALID_CONTENT)
         printf(ARG_ERROR_CONTENT);
+    else if (err == INVALID_PHILOS)
+        printf(ARG_INVALID_PHILOS);
+    else if (err == INVALID_TIME)
+        printf(ARG_INVALID_TIME);
     exit (1);
 }
