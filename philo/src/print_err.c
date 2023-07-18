@@ -12,5 +12,7 @@ void    print_err(int err)
         printf(ARG_INVALID_PHILOS);
     else if (err == INVALID_TIME)
         printf(ARG_INVALID_TIME);
+    else if (err == INVALID_VALUE)
+        printf(ARG_ZERO_VALUE);
     exit (1);
 }

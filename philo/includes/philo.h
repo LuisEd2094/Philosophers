@@ -11,22 +11,21 @@ typedef enum s_error
     INVALID_NUMBER,
     INVALID_CONTENT,
     INVALID_PHILOS,
-    INVALID_TIME
+    INVALID_TIME,
+    INVALID_VALUE
 } t_error_code;
 
-#define STR_HELPER(x) #x
-#define STR(x) STR_HELPER(x)
-
 # define MAX_PHILOS 300
-# define MAX_TIME   2000
+# define MAX_TIME   20000
 
 # define ARG_ERROR_NUM "Invalid number of arguments. See subject.\n"
 # define ARG_ERROR_CONTENT "One of your arguments is invalid, \
 check subject and try again.\n"
 # define ARG_INVALID_PHILOS "You have given too many Philos, \
-the max number accepted is " STR(MAX_PHILOS)  ".\n"
-# define ARG_INVALID_TIME "The max time to die, eat and/or think accepted is " \
-STR(MAX_TIME) ".\n"
+the max number accepted is 300.\n"
+# define ARG_INVALID_TIME "The max time to die, eat and/or think accepted is  \
+20000.\n"
+# define ARG_ZERO_VALUE "Arguments can't have zero or negative value.\n"
 
 
 
@@ -46,7 +45,7 @@ typedef struct s_prg
     pthread_mutex_t *forks;
     pthread_mutex_t lock;
     pthread_mutex_t write;
-}t_prg;
+} t_prg;
 
 
 //ERRORS//

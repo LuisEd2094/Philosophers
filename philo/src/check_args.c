@@ -3,10 +3,15 @@
 
 int check_values(int i, char *argv)
 {
-    if (i == 1 && ft_atoi(argv) > MAX_PHILOS)
+    int value;
+
+    value = ft_atoi(argv);
+    if (i == 1 && value > MAX_PHILOS)
         return (INVALID_PHILOS);
-    else if ((i >= 2 || i <= 4) && ft_atoi(argv) > MAX_TIME)
+    else if ((i >= 2 || i <= 4) && value > MAX_TIME)
         return (INVALID_TIME);
+    else if (value <= 0)
+        return (INVALID_VALUE);
     return (OK);
 }
 
@@ -21,8 +26,7 @@ int ck_argv_content(char *argv[])
     {
         if (check_if_white_right_left(argv[i]))
             remove_white_space(argv[i]);
-        if (!argv[i][0] || !check_if_int(argv[i]) || \
-        get_sign(argv[i]) == -1 || ft_atoi(argv[i]) == 0)
+        if (!argv[i][0] || !check_if_int(argv[i]))
             return (INVALID_CONTENT);
         err = check_values(i, argv[i]);
         if (err)
