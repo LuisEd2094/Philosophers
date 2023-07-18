@@ -14,5 +14,7 @@ void    print_err(int err)
         printf(ARG_INVALID_TIME);
     else if (err == INVALID_VALUE)
         printf(ARG_ZERO_VALUE);
+    else if (err == NO_INT_VALUE)
+        printf(ARG_INT_VALUE);
     exit (1);
 }

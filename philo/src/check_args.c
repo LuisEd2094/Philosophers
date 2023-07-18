@@ -5,6 +5,8 @@ int check_values(int i, char *argv)
 {
     int value;
 
+    if (!check_if_int(argv))
+        return (NO_INT_VALUE);
     value = ft_atoi(argv);
     if (i == 1 && value > MAX_PHILOS)
         return (INVALID_PHILOS);
@@ -26,7 +28,7 @@ int ck_argv_content(char *argv[])
     {
         if (check_if_white_right_left(argv[i]))
             remove_white_space(argv[i]);
-        if (!argv[i][0] || !check_if_int(argv[i]))
+        if (!argv[i][0])
             return (INVALID_CONTENT);
         err = check_values(i, argv[i]);
         if (err)
