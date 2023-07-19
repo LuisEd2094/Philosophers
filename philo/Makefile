@@ -43,8 +43,8 @@ all: $(NAME)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c | $(MAKE_OBJ_DIR) $(DEPS_PATH)
 			@echo "$(CYAN)Compiling $< $(DEF_COLOR)"
-			$(CC) $(CFLAGS) $(INCS) -MMD -MP -c $< -o $@
-			mv $(basename $@).d $(DEPS_PATH)
+			@$(CC) $(CFLAGS) $(INCS) -MMD -MP -c $< -o $@
+			@mv $(basename $@).d $(DEPS_PATH)
 
 
 $(NAME): $(OBJS)
