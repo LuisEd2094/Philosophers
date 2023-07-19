@@ -5,8 +5,7 @@ SRCS_PATH           = src/
 OBJS_PATH           = obj/
 ARGS_PATH			= ParseArguments/
 SHARED_PATH			=	SharedFiles/
-MAKE_OBJ_DIR		= $(OBJS_PATH) $(OBJS_PATH)$(ARGS_PATH) \
-						$(OBJS_PATH)$(SHARED_PATH)
+MAKE_OBJ_DIR		= $(OBJS_PATH) $(addprefix $(OBJS_PATH), $(ARGS_PATH) $(SHARED_PATH))
 DEPS_PATH	= deps/
 INCS        = -I./includes/
 
