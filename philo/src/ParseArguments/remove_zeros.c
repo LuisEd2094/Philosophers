@@ -1,4 +1,4 @@
-void remove_zeros(char *str)
+void check_and_remove_zeros(char *str)
 {
 	int i;
     int k;

@@ -1,5 +1,5 @@
 #include <parse.h>
-#include <stdio.h>
+#include <shared.h>
 
 int check_values(int i, char *argv)
 {

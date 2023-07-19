@@ -4,7 +4,9 @@ RM          = rm -f
 SRCS_PATH           = src/
 OBJS_PATH           = obj/
 ARGS_PATH			= ParseArguments/
-MAKE_OBJ_DIR		= $(OBJS_PATH) $(OBJS_PATH)$(ARGS_PATH)
+SHARED_PATH			=	SharedFiles/
+MAKE_OBJ_DIR		= $(OBJS_PATH) $(OBJS_PATH)$(ARGS_PATH) \
+						$(OBJS_PATH)$(SHARED_PATH)
 DEPS_PATH	= deps/
 INCS        = -I./includes/
 
@@ -26,18 +28,23 @@ LIGHT_GREEN = \033[1;92m
 
 SRC         =	main.c 
 
-ARGS		= 	print_err.c check_args.c ft_check_if_int.c \
-				ft_isspace.c ft_strlen.c ft_remove_white_space.c \
-				check_if_white_right_left.c ft_get_sign.c ft_atoi.c \
-				parse_arguments.c remove_zeros.c
+ARGS		= 	print_err.c check_args.c remove_white_space.c \
+				check_if_white_right_left.c	parse_arguments.c \
+				remove_zeros.c
+
+SHARED		=	ft_atoi.c ft_check_if_int.c ft_get_sign.c \
+				ft_isspace.c ft_strlen.c
 
 ARGS_FILES	=	$(addprefix $(ARGS_PATH), $(ARGS))
 
-SRC			+=	$(ARGS_FILES)
+SHR_FILES	=	$(addprefix $(SHARED_PATH), $(SHARED))
+
+DEPS		= 	$(addprefix $(DEPS_PATH), $(SRC:.c=.d) $(ARGS:.c=.d) $(SHARED:.c=.d))
+
+SRC			+=	$(ARGS_FILES) $(SHR_FILES)
 
 OBJS        =	$(addprefix $(OBJS_PATH), $(SRC:.c=.o)) 
 				
-DEPS		= 	$(addprefix $(DEPS_PATH), $(SRC:.c=.d))
 
 all: $(NAME)
 

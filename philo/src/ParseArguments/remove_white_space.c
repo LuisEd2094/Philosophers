@@ -1,4 +1,5 @@
 #include <parse.h>
+#include <shared.h>
 
 void    remove_white_space(char *argv)
 {

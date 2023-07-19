@@ -1,4 +1,5 @@
 #include <parse.h>
+#include <shared.h>
 
 int check_if_white_right_left(char *argv)
 {

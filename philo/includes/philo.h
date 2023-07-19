@@ -4,8 +4,6 @@
 # include <stddef.h>
 # include <pthread.h>
 
-
-
 typedef struct s_prg
 {
     pthread_t       *tid;
