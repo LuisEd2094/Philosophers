@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "philo.h"
+#include <parse.h>
 
 void    print_err(int err)
 {

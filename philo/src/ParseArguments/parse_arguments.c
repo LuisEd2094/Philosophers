@@ -1,4 +1,4 @@
-#include "philo.h"
+#include <parse.h>
 
 void remove_white_space_arguments(char *argv[])
 {

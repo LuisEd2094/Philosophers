@@ -3,6 +3,8 @@ CFLAGS      = -Wall -Wextra  -Werror
 RM          = rm -f
 SRCS_PATH           = src/
 OBJS_PATH           = obj/
+ARGS_PATH			= ParseArguments/
+MAKE_OBJ_DIR		= $(OBJS_PATH) $(OBJS_PATH)$(ARGS_PATH)
 DEPS_PATH	= deps/
 INCS        = -I./includes/
 
@@ -22,10 +24,16 @@ LIGHT_GREEN = \033[1;92m
 
 ###
 
-SRC         =	main.c print_err.c check_args.c ft_check_if_int.c \
+SRC         =	main.c 
+
+ARGS		= 	print_err.c check_args.c ft_check_if_int.c \
 				ft_isspace.c ft_strlen.c ft_remove_white_space.c \
 				check_if_white_right_left.c ft_get_sign.c ft_atoi.c \
 				parse_arguments.c remove_zeros.c
+
+ARGS_FILES	=	$(addprefix $(ARGS_PATH), $(ARGS))
+
+SRC			+=	$(ARGS_FILES)
 
 OBJS        =	$(addprefix $(OBJS_PATH), $(SRC:.c=.o)) 
 				
@@ -33,10 +41,10 @@ DEPS		= 	$(addprefix $(DEPS_PATH), $(SRC:.c=.d))
 
 all: $(NAME)
 
-$(OBJS_PATH)%.o: $(SRCS_PATH)%.c | $(OBJS_PATH) $(DEPS_PATH)
+$(OBJS_PATH)%.o: $(SRCS_PATH)%.c | $(MAKE_OBJ_DIR) $(DEPS_PATH)
 			@echo "$(CYAN)Compiling $< $(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(INCS) -MMD -MP -c $< -o $@
-			@mv $(OBJS_PATH)$(notdir $(basename $<)).d $(DEPS_PATH)
+			$(CC) $(CFLAGS) $(INCS) -MMD -MP -c $< -o $@
+			mv $(basename $@).d $(DEPS_PATH)
 
 
 $(NAME): $(OBJS)
@@ -44,9 +52,9 @@ $(NAME): $(OBJS)
 	@echo "$(LIGHT_GREEN)Created $(NAME) executable$(DEF_COLOR)"
 
 
-$(OBJS_PATH):
+$(MAKE_OBJ_DIR):
 	@echo "$(GREEN)Creating $(NAME) Obj Dir $(DEF_COLOR)"
-	@mkdir -p $(OBJS_PATH)
+	@mkdir -p $(MAKE_OBJ_DIR)
 
 $(DEPS_PATH):
 	@echo "$(GREEN)Creating $(NAME) Deps Dir $(DEF_COLOR)"

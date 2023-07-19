@@ -1,4 +1,4 @@
-#include "philo.h"
+#include <parse.h>
 #include <stdio.h>
 
 int check_values(int i, char *argv)
