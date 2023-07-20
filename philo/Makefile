@@ -4,8 +4,10 @@ RM          = rm -f
 SRCS_PATH           = src/
 OBJS_PATH           = obj/
 ARGS_PATH			= ParseArguments/
+PRG_PATH			= Program/
 SHARED_PATH			=	SharedFiles/
-MAKE_OBJ_DIR		= $(OBJS_PATH) $(addprefix $(OBJS_PATH), $(ARGS_PATH) $(SHARED_PATH))
+MAKE_OBJ_DIR		= $(OBJS_PATH) $(addprefix $(OBJS_PATH), $(ARGS_PATH) \
+						$(SHARED_PATH) $(PRG_PATH))
 DEPS_PATH	= deps/
 INCS        = -I./includes/
 
@@ -27,20 +29,23 @@ LIGHT_GREEN = \033[1;92m
 
 SRC         =	main.c 
 
-ARGS		= 	print_err.c check_args.c remove_white_space.c \
+ARGS		= 	print_err_args.c check_args.c remove_white_space.c \
 				check_if_white_right_left.c	parse_arguments.c \
 				remove_zeros.c
 
 SHARED		=	ft_atoi.c ft_check_if_int.c ft_get_sign.c \
 				ft_isspace.c ft_strlen.c
+PRG			=	init_prg.c print_err_prg.c close_prg.c
 
 ARGS_FILES	=	$(addprefix $(ARGS_PATH), $(ARGS))
 
 SHR_FILES	=	$(addprefix $(SHARED_PATH), $(SHARED))
 
+PRG_FILES	=	$(addprefix $(PRG_PATH), $(PRG))
+
 DEPS		= 	$(addprefix $(DEPS_PATH), $(SRC:.c=.d) $(ARGS:.c=.d) $(SHARED:.c=.d))
 
-SRC			+=	$(ARGS_FILES) $(SHR_FILES)
+SRC			+=	$(ARGS_FILES) $(SHR_FILES) $(PRG_FILES)
 
 OBJS        =	$(addprefix $(OBJS_PATH), $(SRC:.c=.o)) 
 				
@@ -49,7 +54,7 @@ all: $(NAME)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c | $(MAKE_OBJ_DIR) $(DEPS_PATH)
 			@echo "$(CYAN)Compiling $< $(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(INCS) -MMD -MP -c $< -o $@
+			@$(CC) $(CFLAGS) $(INCS) -MMD -MP -c $< -o $@ -lpthread
 			@mv $(basename $@).d $(DEPS_PATH)
 
 

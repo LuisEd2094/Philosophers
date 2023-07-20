@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <parse.h>
 
-void    print_err(int err)
+void    print_err_args(int err)
 {
     if (err == INVALID_NUMBER)
         printf(ARG_ERROR_NUM);

@@ -5,9 +5,11 @@
 
 int main(int argc, char *argv[])
 {
-    //t_prg prg;
+    t_prg prg;
 
     parse_arguments(argc, argv);
+    init(&prg, argv, argc);
+
     printf("VALID ARGUMENTS\n");
     exit(0);    
 }

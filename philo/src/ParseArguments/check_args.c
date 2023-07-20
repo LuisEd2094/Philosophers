@@ -41,8 +41,8 @@ void check_arguments(int argc, char *argv[])
     int err;
 
     if ((argc < 5 || argc > 6))
-        print_err(INVALID_NUMBER);
+        print_err_args(INVALID_NUMBER);
     err = ck_argv_content(argv);
     if (err)
-        print_err(err);
+        print_err_args(err);
 }
