@@ -14,7 +14,7 @@ typedef struct s_philo
 	struct s_prg	*prg;
 	pthread_t		t1;
 	int				id;
-	int				eat_cont;
+	int				eat_count;
 	bool			status;
 	bool			eating;
 	uint64_t		time_to_die;
@@ -44,18 +44,22 @@ typedef struct s_prg
 
 typedef enum s_error
 {
-	ERROR = 10,
+	INIT_THREAD_ERROR = 10,
+	MALLOC_ERROR,
 
 } t_error_code;
 
 
-#define INIT_THREAD_ERROR "There was an error when init a new thread, closing\
-program.\n"
+# define INIT_THREAD_ERR_MSSG "There was an error when init a new thread, \
+closing program.\n"
+# define MALLOC_ERR_MSSG "There was an error allocating memory, \
+closing program.\n"
 
 // PARSE ARGUMENTS API //
 void    parse_arguments(int argc, char *argv[]);
-//PRG FUNCTIONS //
+//INIT FUNCTIONS //
 void    init(t_prg *prg, char **argv, int argc);
+void init_thread(pthread_mutex_t *thread, t_prg *prg);
 // ERROR FUNCTIONS //
 void    print_err_prg(char *err, t_prg *prg);
 // CLOSE PROGRAM FUNCTIONS //
