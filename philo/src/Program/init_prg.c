@@ -1,7 +1,6 @@
 #include <philo.h>
 #include <shared.h>
 
-
 void    init_prg(t_prg *prg, char **argv, int argc)
 {
     prg->philo_num = ft_atoi(argv[1]);
@@ -68,8 +67,6 @@ void    init_philos(t_prg *prg)
         i++;
     }
 }
-
-#include <stdio.h>
 
 void    init(t_prg *prg, char **argv, int argc)
 {
