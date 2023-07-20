@@ -14,11 +14,13 @@ void    init_prg(t_prg *prg, char **argv, int argc)
     prg->finished = 0;
     if (pthread_mutex_init(&prg->write, NULL) ||
 	        pthread_mutex_init(&prg->lock, NULL))
-        print_err_prg(INIT_THREAD_ERROR,prg);    
+        {
+            prg->err = ERROR;
+            print_err_prg(INIT_THREAD_ERROR, prg);
+        }   
 }
 
 void    init(t_prg *prg, char **argv, int argc)
 {
     init_prg(prg, argv, argc);
-
 }

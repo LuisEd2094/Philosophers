@@ -11,5 +11,5 @@ int main(int argc, char *argv[])
     init(&prg, argv, argc);
 
     printf("VALID ARGUMENTS\n");
-    exit(0);    
+    close_prg(&prg);    
 }

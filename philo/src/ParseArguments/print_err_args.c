@@ -16,5 +16,5 @@ void    print_err_args(int err)
         printf(ARG_ZERO_VALUE);
     else if (err == NO_INT_VALUE)
         printf(ARG_INT_VALUE);
-    exit (1);
+    exit (err);
 }

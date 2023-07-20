@@ -28,6 +28,7 @@ typedef struct s_prg
     pthread_t       *tid;
     int             philo_num;
     int             meals_nb;
+	int				err;
     bool            dead;
     bool            finished;
     t_philo         *philos;
@@ -43,7 +44,7 @@ typedef struct s_prg
 
 typedef enum s_error
 {
-    OK,
+	ERROR = 10,
 
 } t_error_code;
 
