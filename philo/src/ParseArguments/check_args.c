@@ -1,7 +1,7 @@
 #include <parse.h>
 #include <shared.h>
 
-void check_values(int i, char *argv)
+static void check_values(int i, char *argv)
 {
     int value;
 
@@ -17,7 +17,7 @@ void check_values(int i, char *argv)
 }
 
 
-void ck_argv_content(char *argv[])
+static void ck_argv_content(char *argv[])
 {
     int i;
 

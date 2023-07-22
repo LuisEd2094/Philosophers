@@ -1,6 +1,6 @@
 #include <parse.h>
 
-void    check_and_remove_white_space(char *argv)
+static void    check_and_remove_white_space(char *argv)
 {
     if (check_if_white_right_left(argv))
             remove_white_space(argv);
