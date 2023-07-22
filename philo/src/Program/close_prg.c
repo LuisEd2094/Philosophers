@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-void    close_threads(t_prg *prg)
+static void    close_threads(t_prg *prg)
 {
     int i;
 
@@ -16,7 +16,7 @@ void    close_threads(t_prg *prg)
     }
 
 }
-void free_mallocs(t_prg *prg)
+static void free_mallocs(t_prg *prg)
 {
     if (prg->tid)
         free(prg->tid);

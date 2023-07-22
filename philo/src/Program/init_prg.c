@@ -1,7 +1,7 @@
 #include <philo.h>
 #include <shared.h>
 
-void    init_prg(t_prg *prg, char **argv, int argc)
+static void    init_prg(t_prg *prg, char **argv, int argc)
 {
     prg->philo_num = ft_atoi(argv[1]);
     prg->death_time = (uint64_t) ft_atoi(argv[2]);
@@ -16,7 +16,7 @@ void    init_prg(t_prg *prg, char **argv, int argc)
     init_thread(&(prg->lock), prg);
 }
 
-void    malloc_data(t_prg *prg)
+static void    malloc_data(t_prg *prg)
 {
     prg->tid = (pthread_t *)malloc(sizeof(pthread_t) * prg->philo_num);
     prg->forks = (pthread_mutex_t *)malloc(sizeof (pthread_mutex_t) *\
@@ -31,7 +31,7 @@ void    malloc_data(t_prg *prg)
 
 }
 
-void    init_forks(t_prg *prg)
+static void    init_forks(t_prg *prg)
 {
     int i;
 
@@ -50,7 +50,7 @@ void    init_forks(t_prg *prg)
     }
 }
 
-void    init_philos(t_prg *prg)
+static void    init_philos(t_prg *prg)
 {
     int i;
 
