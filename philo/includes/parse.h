@@ -29,7 +29,7 @@ the max number accepted is 300.\n"
 # define ARG_INT_VALUE "Please provide an int value for all arguments.\n"
 
 
-void    print_err_args(int err);
+void    print_err_args(char *err_mssg, int err);
 void    check_arguments(int argc, char *argv[]);
 void    remove_white_space(char *argv);
 int     check_if_white_right_left(char *argv);

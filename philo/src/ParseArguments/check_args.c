@@ -1,48 +1,39 @@
 #include <parse.h>
 #include <shared.h>
 
-int check_values(int i, char *argv)
+void check_values(int i, char *argv)
 {
     int value;
 
     if (!check_if_int(argv))
-        return (NO_INT_VALUE);
+        print_err_args (ARG_INT_VALUE, NO_INT_VALUE);
     value = ft_atoi(argv);
     if (i == 1 && value > MAX_PHILOS)
-        return (INVALID_PHILOS);
+        print_err_args (ARG_INVALID_PHILOS, INVALID_PHILOS);
     else if ((i >= 2 || i <= 4) && value > MAX_TIME)
-        return (INVALID_TIME);
+        print_err_args (ARG_INVALID_TIME, INVALID_TIME);
     else if (value <= 0)
-        return (INVALID_VALUE);
-    return (OK);
+        print_err_args (ARG_ZERO_VALUE, INVALID_VALUE);
 }
 
 
-int ck_argv_content(char *argv[])
+void ck_argv_content(char *argv[])
 {
     int i;
-    int err;
 
     i = 1;
     while(argv[i])
     {
         if (!argv[i][0])
-            return (INVALID_CONTENT);
-        err = check_values(i, argv[i]);
-        if (err)
-            return (err);
+            print_err_args (ARG_ERROR_CONTENT, INVALID_CONTENT);
+        check_values(i, argv[i]);
         i++;
     }
-    return (OK);
 }
 
 void check_arguments(int argc, char *argv[])
 {
-    int err;
-
     if ((argc < 5 || argc > 6))
-        print_err_args(INVALID_NUMBER);
-    err = ck_argv_content(argv);
-    if (err)
-        print_err_args(err);
+        print_err_args(ARG_ERROR_NUM, INVALID_NUMBER);
+    ck_argv_content(argv);
 }
