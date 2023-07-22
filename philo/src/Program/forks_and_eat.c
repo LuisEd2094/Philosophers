@@ -4,16 +4,16 @@ void    drop_forks(t_philo *philo)
 {
     pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
-    printf("SLEEPING\n");
+    print_philo_state("sleeping", philo);
     usleep(philo->prg->sleep_time);
 }
 
 void take_forks(t_philo *philo)
 {
     pthread_mutex_lock(philo->r_fork);
-    printf("TAKEN FORK\n");
+    print_philo_state("taken fork", philo);
     pthread_mutex_lock(philo->l_fork);
-    printf("TAKEN FORK\n");
+    print_philo_state("taken fork", philo);
 }
 
 void    eat(t_philo *philo)
@@ -22,7 +22,7 @@ void    eat(t_philo *philo)
     pthread_mutex_lock(&philo->lock);
     philo->eating = 1;
     philo->time_to_die = get_time(philo->prg) + philo->prg->death_time;
-    printf("EATING\n");
+    print_philo_state("eating", philo);
     philo->eat_count++;
     usleep(philo->prg->eat_time);
     philo->eating = 0;

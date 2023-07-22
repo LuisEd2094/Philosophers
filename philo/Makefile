@@ -37,7 +37,7 @@ SHARED		=	ft_atoi.c ft_check_if_int.c ft_get_sign.c \
 				ft_isspace.c ft_strlen.c
 PRG			=	init_prg.c print_err_prg.c close_prg.c \
 				init_thread.c one_philo_case.c get_time.c \
-				thread_functions.c forks_and_eat.c
+				thread_functions.c forks_and_eat.c print_philo_state.c
 
 ARGS_FILES	=	$(addprefix $(ARGS_PATH), $(ARGS))
 

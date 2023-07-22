@@ -77,11 +77,11 @@ uint64_t	get_time(t_prg *prg);
 void    one_philo_case(t_prg *prg);
 // THREAD FUNCTIONS //
 void	*routine(void *philo_pointer);
-
-
 // FORKS AND EAT FUNCTIONS //
-
 void	eat(t_philo *philo);
+// PRINT MESSAGES //
+void    print_philo_state(char *str, t_philo *philo);
+
 
 
 #endif
