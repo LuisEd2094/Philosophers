@@ -5,6 +5,10 @@
 # include <pthread.h>
 # include <stdint.h>
 # include <stdbool.h>
+# include <unistd.h>
+# include <stdio.h>
+
+
 
 
 struct	s_prg;
@@ -46,6 +50,7 @@ typedef enum s_error
 {
 	INIT_THREAD_ERROR = 10,
 	MALLOC_ERROR,
+	TIME_ERROR
 
 } t_error_code;
 
@@ -54,16 +59,29 @@ typedef enum s_error
 closing program.\n"
 # define MALLOC_ERR_MSSG "There was an error allocating memory, \
 closing program.\n"
+# define TIME_ERR_MSG "There was an error getting current time, \
+closing program.\n"
 
 // PARSE ARGUMENTS API //
 void    parse_arguments(int argc, char *argv[]);
 //INIT FUNCTIONS //
 void    init(t_prg *prg, char **argv, int argc);
-void init_thread(pthread_mutex_t *thread, t_prg *prg);
-// ERROR FUNCTIONS //
+void	init_thread(pthread_mutex_t *thread, t_prg *prg);
+// PRINT ERR FUNCTIONS //
 void    print_err_prg(char *err, t_prg *prg);
 // CLOSE PROGRAM FUNCTIONS //
 void    close_prg(t_prg *prg);
+// GET CURRENT TIMETIME //
+uint64_t	get_time(t_prg *prg);
+// ONE PHILE CASE //
+void    one_philo_case(t_prg *prg);
+// THREAD FUNCTIONS //
+void	*routine(void *philo_pointer);
+
+
+// FORKS AND EAT FUNCTIONS //
+
+void	eat(t_philo *philo);
 
 
 #endif

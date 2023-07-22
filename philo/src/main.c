@@ -1,6 +1,5 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include "philo.h"
+#include <philo.h>
 
 
 int main(int argc, char *argv[])
@@ -9,7 +8,8 @@ int main(int argc, char *argv[])
 
     parse_arguments(argc, argv);
     init(&prg, argv, argc);
-
+    if (prg.philo_num == 1)
+        one_philo_case(&prg);
     printf("VALID ARGUMENTS\n");
     close_prg(&prg);    
 }

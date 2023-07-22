@@ -36,7 +36,8 @@ ARGS		= 	print_err_args.c check_args.c remove_white_space.c \
 SHARED		=	ft_atoi.c ft_check_if_int.c ft_get_sign.c \
 				ft_isspace.c ft_strlen.c
 PRG			=	init_prg.c print_err_prg.c close_prg.c \
-				init_thread.c
+				init_thread.c one_philo_case.c get_time.c \
+				thread_functions.c forks_and_eat.c
 
 ARGS_FILES	=	$(addprefix $(ARGS_PATH), $(ARGS))
 
@@ -55,12 +56,12 @@ all: $(NAME)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c | $(MAKE_OBJ_DIR) $(DEPS_PATH)
 			@echo "$(CYAN)Compiling $< $(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(INCS) -MMD -MP -c $< -o $@ -lpthread
+			@$(CC) $(CFLAGS) $(INCS) -MMD -MP -c $< -o $@ 
 			@mv $(basename $@).d $(DEPS_PATH)
 
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(INCS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCS) $(OBJS) -o $(NAME) -lpthread
 	@echo "$(LIGHT_GREEN)Created $(NAME) executable$(DEF_COLOR)"
 
 
