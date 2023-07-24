@@ -26,7 +26,6 @@ typedef struct s_philo
 	int				id;
 	int				eat_count;
 	bool			status;
-	bool			eating;
 	uint64_t		time_to_die;
 	pthread_mutex_t	lock;
 	t_fork			*r_fork;
@@ -41,7 +40,7 @@ typedef struct s_prg
     int             meals_nb;
 	int				err;
     bool            dead;
-    bool            finished;
+    int            finished;
     t_philo         *philos;
 	uint64_t		death_time;
 	uint64_t		eat_time;

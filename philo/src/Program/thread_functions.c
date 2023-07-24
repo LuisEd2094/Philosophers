@@ -16,7 +16,7 @@ void    *supervisor(void *philo_p)
     while (!philo->prg->dead)
     {
         pthread_mutex_lock(&philo->lock);
-        if ((get_time(philo->prg) >= philo->time_to_die) && !philo->eating)
+        if ((get_time(philo->prg) >= philo->time_to_die))
         {
             pthread_mutex_lock(&philo->prg->lock);
             philo->prg->dead = 1;
@@ -26,7 +26,7 @@ void    *supervisor(void *philo_p)
         if (philo->eat_count == philo->prg->meals_nb)
         {
             pthread_mutex_lock(&philo->prg->lock);
-            philo->prg->finished = 1;
+            philo->prg->finished++;
             philo->eat_count++;
             pthread_mutex_unlock(&philo->prg->lock);
         }

@@ -44,11 +44,9 @@ bool take_forks(t_philo *philo)
 void    eat(t_philo *philo)
 {
     pthread_mutex_lock(&philo->lock);
-    philo->eating = 1;
     philo->time_to_die = get_time(philo->prg) + philo->prg->death_time;
     print_philo_state(IS_EATING, philo);
     philo->eat_count++;
     usleep(philo->prg->eat_time);
-    philo->eating = 0;
     pthread_mutex_unlock(&philo->lock);
 }
