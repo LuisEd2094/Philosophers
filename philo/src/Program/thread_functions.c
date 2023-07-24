@@ -1,6 +1,5 @@
 #include <philo.h>
 
-
 void    *supervisor(void *philo_p)
 {
     t_philo *philo;
@@ -10,10 +9,7 @@ void    *supervisor(void *philo_p)
     {
         pthread_mutex_lock(&philo->lock);
         if ((get_time(philo->prg) >= philo->time_to_die) && !philo->eating)
-        {
-            philo->prg->dead = 1;
-            print_philo_state("DEAD", philo);
-        }
+            print_philo_state(DIED, philo);
         if (philo->eat_count == philo->prg->meals_nb)
         {
             pthread_mutex_lock(&philo->prg->lock);
@@ -37,8 +33,10 @@ void	*routine(void *philo_p)
         print_err_prg("ERROR\n", (philo->prg));
     while (!philo->prg->dead)
     {
+        take_forks(philo);
         eat(philo);
-        print_philo_state("Thinking", philo);
+        drop_forks(philo);
+        print_philo_state(IS_THINKING, philo);
     }
     pthread_join(philo->t1, NULL);
     return ((void *) 0);

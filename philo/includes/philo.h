@@ -62,6 +62,12 @@ closing program.\n"
 # define TIME_ERR_MSG "There was an error getting current time, \
 closing program.\n"
 
+# define TAKE_FORK "has taken a fork"
+# define IS_EATING "is eating"
+# define IS_SLEEPING "is sleeping"
+# define IS_THINKING "is thinking"
+# define DIED "died"
+
 // PARSE ARGUMENTS API //
 void    parse_arguments(int argc, char *argv[]);
 //INIT FUNCTIONS //
@@ -77,8 +83,14 @@ uint64_t	get_time(t_prg *prg);
 void    one_philo_case(t_prg *prg);
 // THREAD FUNCTIONS //
 void	*routine(void *philo_pointer);
-// FORKS AND EAT FUNCTIONS //
+// ACTION FUNCTIONS //
+void	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
+void    drop_forks(t_philo *philo);
+void    philo_sleep(t_philo *philo);
+
+
+
 // PRINT MESSAGES //
 void    print_philo_state(char *str, t_philo *philo);
 
