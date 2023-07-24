@@ -1,10 +1,18 @@
 #include <philo.h>
 
+void    update_num_threads(t_prg *prg, int value)
+{
+    pthread_mutex_lock(&(prg->lock));
+    prg->num_threads += value;
+    pthread_mutex_unlock(&(prg->lock));
+}
+
 void    *supervisor(void *philo_p)
 {
     t_philo *philo;
 
     philo = (t_philo *)philo_p;
+    update_num_threads(philo->prg, 1);
     while (!philo->prg->dead)
     {
         pthread_mutex_lock(&philo->lock);
@@ -26,21 +34,23 @@ void    *supervisor(void *philo_p)
     }
     printf("Superver, I have left my loop\n");
     return ((void *)0);
-
 }
+
 
 void	*routine(void *philo_p)
 {
     t_philo *philo;
 
     philo = (t_philo *)philo_p;
+    update_num_threads(philo->prg, 1);
     philo->time_to_die = philo->prg->death_time + get_time(philo->prg);
     if (pthread_create(&(philo->t1), NULL, &supervisor, (void *)philo))
         print_err_prg("ERROR\n", (philo->prg));
     pthread_detach(philo->t1);
     while (!philo->prg->dead)
     {
-        take_forks(philo);
+        if (!take_forks(philo))
+            break ;
         printf("I am inside lopp, Philo\n");
         eat(philo);
         drop_forks(philo);

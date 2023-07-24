@@ -8,16 +8,34 @@ void    philo_sleep(t_philo *philo)
 
 void    drop_forks(t_philo *philo)
 {
-    pthread_mutex_unlock(philo->l_fork);
-	pthread_mutex_unlock(philo->r_fork);
+    philo->l_fork->av = 1;
+    pthread_mutex_unlock(&philo->l_fork->lock);
+    philo->r_fork->av = 1;
+	pthread_mutex_unlock(&philo->r_fork->lock);
 }
 
-void take_forks(t_philo *philo)
+bool    wait_for_fork(t_fork *fork, t_prg *prg)
 {
-    pthread_mutex_lock(philo->r_fork);
+    while (!fork->av && !prg->dead)
+        usleep(1);
+    if (prg->dead)
+        return (0);
+    return (1); 
+}
+
+bool take_forks(t_philo *philo)
+{
+    if (!wait_for_fork(philo->r_fork, philo->prg))
+        return (0);
+    pthread_mutex_lock(&philo->r_fork->lock);
+    philo->r_fork->av = 0;
     print_philo_state(TAKE_FORK, philo);
-    pthread_mutex_lock(philo->l_fork);
+    if (!wait_for_fork(philo->l_fork, philo->prg))
+        return (0);
+    pthread_mutex_lock(&philo->l_fork->lock);
+    philo->l_fork->av = 0;
     print_philo_state(TAKE_FORK, philo);
+    return (1);
 }
 
 void    eat(t_philo *philo)

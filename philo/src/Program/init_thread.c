@@ -1,6 +1,6 @@
 #include <philo.h>
 
-void init_thread(pthread_mutex_t *thread, t_prg *prg)
+void init_mutex(pthread_mutex_t *thread, t_prg *prg)
 {
     if (pthread_mutex_init(thread, NULL))
     {

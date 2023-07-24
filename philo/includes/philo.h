@@ -13,6 +13,12 @@
 
 struct	s_prg;
 
+typedef struct s_forks
+{
+	bool	av;
+	pthread_mutex_t lock;
+}	t_fork;
+
 typedef struct s_philo
 {
 	struct s_prg	*prg;
@@ -23,13 +29,14 @@ typedef struct s_philo
 	bool			eating;
 	uint64_t		time_to_die;
 	pthread_mutex_t	lock;
-	pthread_mutex_t	*r_fork;
-	pthread_mutex_t	*l_fork;
+	t_fork			*r_fork;
+	t_fork			*l_fork;
 }	t_philo;
 
 typedef struct s_prg
 {
     pthread_t       *tid;
+	int				num_threads;
     int             philo_num;
     int             meals_nb;
 	int				err;
@@ -40,9 +47,8 @@ typedef struct s_prg
 	uint64_t		eat_time;
 	uint64_t		sleep_time;
 	uint64_t		start_time;
-    pthread_mutex_t *forks;
+    t_fork			*forks;
     pthread_mutex_t lock;
-    pthread_mutex_t write;
 } t_prg;
 
 
@@ -72,7 +78,7 @@ closing program.\n"
 void    parse_arguments(int argc, char *argv[]);
 //INIT FUNCTIONS //
 void    init(t_prg *prg, char **argv, int argc);
-void	init_thread(pthread_mutex_t *thread, t_prg *prg);
+void	init_mutex(pthread_mutex_t *thread, t_prg *prg);
 // PRINT ERR FUNCTIONS //
 void    print_err_prg(char *err, t_prg *prg);
 // CLOSE PROGRAM FUNCTIONS //
@@ -84,7 +90,7 @@ void    one_philo_case(t_prg *prg);
 // THREAD FUNCTIONS //
 void	*routine(void *philo_pointer);
 // ACTION FUNCTIONS //
-void	take_forks(t_philo *philo);
+bool	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
 void    drop_forks(t_philo *philo);
 void    philo_sleep(t_philo *philo);

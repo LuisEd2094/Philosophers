@@ -15,15 +15,14 @@ static void    init_prg(t_prg *prg, char **argv, int argc)
     prg->finished = 0;
     prg->err = 0;
     prg->start_time = 0;
-    init_thread(&(prg->write), prg);
-    init_thread(&(prg->lock), prg);
+    prg->num_threads = 0;
+    init_mutex(&(prg->lock), prg);
 }
 
 static void    malloc_data(t_prg *prg)
 {
     prg->tid = (pthread_t *)malloc(sizeof(pthread_t) * prg->philo_num);
-    prg->forks = (pthread_mutex_t *)malloc(sizeof (pthread_mutex_t) *\
-     prg->philo_num);
+    prg->forks = (t_fork *)malloc(sizeof (t_fork) * prg->philo_num);
     prg->philos = (t_philo *)malloc(sizeof (t_philo) *\
      prg->philo_num);
     if (!prg->tid || !prg->forks || !prg->philos)
@@ -40,7 +39,10 @@ static void    init_forks(t_prg *prg)
 
     i = -1;
     while (++i < prg->philo_num)
-        init_thread(&prg->forks[i], prg);
+    {
+        prg->forks[i].av = 1;
+        init_mutex(&prg->forks[i].lock, prg);
+    }
     i = 0;
     while (i < prg->philo_num)
     {
@@ -49,8 +51,7 @@ static void    init_forks(t_prg *prg)
             prg->philos[i].r_fork = &prg->forks[prg->philo_num - 1];
         else
             prg->philos[i].r_fork = &prg->forks[i - 1];
-        printf("RIGHT %p LEFT %p\n", prg->philos[i].r_fork, prg->philos[i].l_fork);
-        i ++;
+        i++;
     }
 }
 
@@ -61,7 +62,7 @@ static void    init_philos(t_prg *prg)
     i = 0;
     while (i < prg->philo_num)
     {
-        init_thread(&(prg->philos[i].lock), prg);
+        init_mutex(&(prg->philos[i].lock), prg);
         prg->philos[i].prg = prg;
         prg->philos[i].id = i + 1;
         prg->philos[i].time_to_die = prg->death_time;

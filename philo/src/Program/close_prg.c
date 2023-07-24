@@ -13,11 +13,10 @@ static void    close_threads(t_prg *prg)
     int i;
 
     destroy(&(prg->lock),"Prg Lock");
-    destroy(&(prg->write), "Prg Write");
     i = -1;
     while (++i < prg->philo_num)
     {
-        destroy(&(prg->forks[i]), "Prg Fork");
+        destroy(&(prg->forks[i].lock), "Prg Fork");
         destroy(&(prg->philos[i].lock), "Prg Philo");
         //pthread_detach(prg->philos[i].t1);
         //pthread_detach(prg->tid[i]);
@@ -38,6 +37,7 @@ void    close_prg(t_prg *prg)
 {
     close_threads(prg);
     free_mallocs(prg);
+    printf("Num threads %i\n", prg->num_threads);
     if (prg->err)
         exit(prg->err);
     exit(0);
