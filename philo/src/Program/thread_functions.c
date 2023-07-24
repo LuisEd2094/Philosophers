@@ -50,7 +50,6 @@ void	*routine(void *philo_p)
     {
         if (!take_forks(philo))
             break ;
-        printf("I am inside lopp, Philo\n");
         eat(philo);
         drop_forks(philo);
         print_philo_state(IS_THINKING, philo);
