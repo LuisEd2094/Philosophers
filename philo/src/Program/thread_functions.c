@@ -27,7 +27,6 @@ void    *supervisor(void *philo_p)
         {
             pthread_mutex_lock(&philo->prg->lock);
             philo->prg->finished++;
-            philo->eat_count++;
             pthread_mutex_unlock(&philo->prg->lock);
         }
         pthread_mutex_unlock(&philo->lock);
