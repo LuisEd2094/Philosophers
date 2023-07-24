@@ -5,14 +5,6 @@ void    print_philo_state(char *str, t_philo *philo)
 {
     uint64_t    time;
 
-    pthread_mutex_lock(&(philo->prg->write));
     time = get_time(philo->prg) - philo->prg->start_time;
-    if (strcmp(DIED, str) == 0)//NEED TO GET MY FT_//
-    {
-        printf("%lu %d %s\n", time, philo->id, str);
-        philo->prg->dead = 1;
-    }
-    if (!philo->prg->dead)
-		  printf("%lu %d %s\n", time, philo->id, str);
-    pthread_mutex_unlock(&(philo->prg->write));
+    printf("%lu %d %s\n", time, philo->id, str);
 }

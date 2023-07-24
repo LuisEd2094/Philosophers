@@ -9,7 +9,12 @@ void    *supervisor(void *philo_p)
     {
         pthread_mutex_lock(&philo->lock);
         if ((get_time(philo->prg) >= philo->time_to_die) && !philo->eating)
+        {
+            pthread_mutex_lock(&philo->prg->lock);
+            philo->prg->dead = 1;
             print_philo_state(DIED, philo);
+            pthread_mutex_unlock(&philo->prg->lock);
+        }
         if (philo->eat_count == philo->prg->meals_nb)
         {
             pthread_mutex_lock(&philo->prg->lock);
@@ -19,6 +24,7 @@ void    *supervisor(void *philo_p)
         }
         pthread_mutex_unlock(&philo->lock);
     }
+    printf("Superver, I have left my loop\n");
     return ((void *)0);
 
 }
@@ -31,6 +37,7 @@ void	*routine(void *philo_p)
     philo->time_to_die = philo->prg->death_time + get_time(philo->prg);
     if (pthread_create(&(philo->t1), NULL, &supervisor, (void *)philo))
         print_err_prg("ERROR\n", (philo->prg));
+    pthread_detach(philo->t1);
     while (!philo->prg->dead)
     {
         take_forks(philo);

@@ -19,8 +19,8 @@ static void    close_threads(t_prg *prg)
     {
         destroy(&(prg->forks[i]), "Prg Fork");
         destroy(&(prg->philos[i].lock), "Prg Philo");
-        pthread_detach(prg->philos[i].t1);
-        pthread_detach(prg->tid[i]);
+        //pthread_detach(prg->philos[i].t1);
+        //pthread_detach(prg->tid[i]);
     }
 
 }

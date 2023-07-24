@@ -49,6 +49,7 @@ static void    init_forks(t_prg *prg)
             prg->philos[i].r_fork = &prg->forks[prg->philo_num - 1];
         else
             prg->philos[i].r_fork = &prg->forks[i - 1];
+        printf("RIGHT %p LEFT %p\n", prg->philos[i].r_fork, prg->philos[i].l_fork);
         i ++;
     }
 }
