@@ -32,7 +32,7 @@ void    *supervisor(void *philo_p)
         }
         pthread_mutex_unlock(&philo->lock);
     }
-    printf("Superver, I have left my loop\n");
+    update_num_threads(philo->prg, -1);
     return ((void *)0);
 }
 
@@ -56,6 +56,6 @@ void	*routine(void *philo_p)
         drop_forks(philo);
         print_philo_state(IS_THINKING, philo);
     }
-    //pthread_join(philo->t1, NULL);
+    update_num_threads(philo->prg, -1);
     return ((void *) 0);
 }

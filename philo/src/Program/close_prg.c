@@ -1,11 +1,24 @@
 #include <philo.h>
 #include <stdlib.h>
+#include <errno.h>
+
 
 void destroy(pthread_mutex_t * mutex, char * str)
 {
-    pthread_mutex_unlock(mutex);
-    if (pthread_mutex_destroy(mutex))
-        printf("Failed %p %s\n", mutex, str);
+
+    int result = pthread_mutex_destroy(mutex); 
+    if (result == 0) {
+        printf("Mutex destroyed successfully.\n");
+    } else {
+        if (result == EBUSY) {
+            printf("Cannot destroy the mutex. It's currently locked by a thread. %s\n", str);
+        } else if (result == EINVAL) {
+            printf("Invalid mutex object.\n");
+        } else {
+            printf("Error occurred while destroying the mutex. Error code: %d %s\n", result, str);
+        }
+    }
+
 }
 
 static void    close_threads(t_prg *prg)
@@ -35,6 +48,8 @@ static void free_mallocs(t_prg *prg)
 
 void    close_prg(t_prg *prg)
 {
+    while (prg->num_threads != 0)
+        usleep(1); 
     close_threads(prg);
     free_mallocs(prg);
     printf("Num threads %i\n", prg->num_threads);

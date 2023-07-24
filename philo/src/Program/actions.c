@@ -9,9 +9,9 @@ void    philo_sleep(t_philo *philo)
 void    drop_forks(t_philo *philo)
 {
     philo->l_fork->av = 1;
-    pthread_mutex_unlock(&philo->l_fork->lock);
+    pthread_mutex_unlock(&(philo->l_fork->lock));
     philo->r_fork->av = 1;
-	pthread_mutex_unlock(&philo->r_fork->lock);
+	pthread_mutex_unlock(&(philo->r_fork->lock));
 }
 
 bool    wait_for_fork(t_fork *fork, t_prg *prg)
@@ -31,7 +31,10 @@ bool take_forks(t_philo *philo)
     philo->r_fork->av = 0;
     print_philo_state(TAKE_FORK, philo);
     if (!wait_for_fork(philo->l_fork, philo->prg))
+    {
+        pthread_mutex_unlock(&(philo->r_fork->lock));
         return (0);
+    }
     pthread_mutex_lock(&philo->l_fork->lock);
     philo->l_fork->av = 0;
     print_philo_state(TAKE_FORK, philo);
