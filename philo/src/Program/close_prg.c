@@ -1,18 +1,26 @@
 #include <philo.h>
 #include <stdlib.h>
 
+void destroy(pthread_mutex_t * mutex, char * str)
+{
+    pthread_mutex_unlock(mutex);
+    if (pthread_mutex_destroy(mutex))
+        printf("Failed %p %s\n", mutex, str);
+}
 
 static void    close_threads(t_prg *prg)
 {
     int i;
 
-    pthread_mutex_destroy(&(prg->lock));
-    pthread_mutex_destroy(&(prg->write));
+    destroy(&(prg->lock),"Prg Lock");
+    destroy(&(prg->write), "Prg Write");
     i = -1;
     while (++i < prg->philo_num)
     {
-        pthread_mutex_destroy(&(prg->forks[i]));
-        pthread_mutex_destroy(&(prg->philos[i].lock));
+        destroy(&(prg->forks[i]), "Prg Fork");
+        destroy(&(prg->philos[i].lock), "Prg Philo");
+        pthread_detach(prg->philos[i].t1);
+        pthread_detach(prg->tid[i]);
     }
 
 }

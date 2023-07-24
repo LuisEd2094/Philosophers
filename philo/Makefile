@@ -1,5 +1,5 @@
 NAME        = philo
-CFLAGS      = -Wall -Wextra  -Werror
+CFLAGS      = -Wall -Wextra  -Werror -g
 RM          = rm -f
 SRCS_PATH           = src/
 OBJS_PATH           = obj/

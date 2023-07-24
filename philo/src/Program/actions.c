@@ -10,7 +10,6 @@ void    drop_forks(t_philo *philo)
 {
     pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
-
 }
 
 void take_forks(t_philo *philo)

@@ -29,15 +29,16 @@ void	*routine(void *philo_p)
 
     philo = (t_philo *)philo_p;
     philo->time_to_die = philo->prg->death_time + get_time(philo->prg);
-    if (pthread_create(&philo->t1, NULL, &supervisor, (void *)philo))
+    if (pthread_create(&(philo->t1), NULL, &supervisor, (void *)philo))
         print_err_prg("ERROR\n", (philo->prg));
     while (!philo->prg->dead)
     {
         take_forks(philo);
+        printf("I am inside lopp, Philo\n");
         eat(philo);
         drop_forks(philo);
         print_philo_state(IS_THINKING, philo);
     }
-    pthread_join(philo->t1, NULL);
+    //pthread_join(philo->t1, NULL);
     return ((void *) 0);
 }

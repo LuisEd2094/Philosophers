@@ -9,9 +9,12 @@ static void    init_prg(t_prg *prg, char **argv, int argc)
 	prg->sleep_time = (uint64_t) ft_atoi(argv[4]);
     if (argc == 6)
 		prg->meals_nb = ft_atoi(argv[5]);
+    else
+        prg->meals_nb = -1;
     prg->dead = 0;
     prg->finished = 0;
     prg->err = 0;
+    prg->start_time = 0;
     init_thread(&(prg->write), prg);
     init_thread(&(prg->lock), prg);
 }
@@ -64,6 +67,7 @@ static void    init_philos(t_prg *prg)
         prg->philos[i].eat_count = 0;
         prg->philos[i].eating = 0;
         prg->philos[i].status = 0;
+        prg->philos[i].t1 = 0;
         i++;
     }
 }
