@@ -34,9 +34,9 @@ void	*routine(void *philo_p)
     t_philo *philo;
 
     philo = (t_philo *)philo_p;
+    printf("IM HERE\n");
     update_num_threads(philo->prg, 1);
     philo->time_to_die = philo->prg->death_time + get_time(philo->prg);
-    philo->prg->f_test = NULL;
     if (!create_thread(&(philo->t1), &supervisor, (void *)philo))
     {
         update_num_threads(philo->prg, -1);

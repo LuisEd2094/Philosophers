@@ -7,7 +7,7 @@ void destroy(pthread_mutex_t * mutex, char * str)
 {
 
     int result = pthread_mutex_destroy(mutex); 
-    printf("CLOSED %s\n", str);
+    //printf("CLOSED %s\n", str);
     if (result == 0) {
         printf("Mutex destroyed successfully.\n");
     } else {

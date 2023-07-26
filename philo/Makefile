@@ -36,9 +36,9 @@ ARGS		= 	print_err_args.c check_args.c remove_white_space.c \
 SHARED		=	ft_atoi.c ft_check_if_int.c ft_get_sign.c \
 				ft_isspace.c ft_strlen.c
 PRG			=	init_prg.c print_err_prg.c close_prg.c \
-				init_thread.c one_philo_case.c get_time.c \
+				init_mutex.c one_philo_case.c get_time.c \
 				thread_functions.c actions.c print_philo_state.c \
-				thread_handle_functions.c
+				thread_handle_functions.c work_else.c
 
 ARGS_FILES	=	$(addprefix $(ARGS_PATH), $(ARGS))
 

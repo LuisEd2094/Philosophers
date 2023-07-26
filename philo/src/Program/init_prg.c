@@ -25,6 +25,8 @@ static void    init_prg(t_prg *prg, char **argv, int argc)
 
 static void    malloc_data(t_prg *prg)
 {
+    //int i;
+
     prg->tid = (pthread_t *)malloc(sizeof(pthread_t) * prg->philo_num);
     prg->forks = (t_fork *)malloc(sizeof (t_fork) * prg->philo_num);
     prg->philos = (t_philo *)malloc(sizeof (t_philo) *\
@@ -35,6 +37,9 @@ static void    malloc_data(t_prg *prg)
         prg->err_msg = MALLOC_ERR_MSSG;
         close_on_failed_init(prg);
     }
+   // i = 0;
+    /*while (i < prg->philo_num)
+        prg->tid[i++] = 0;*/
 }
 
 static void    init_forks(t_prg *prg)
@@ -44,7 +49,21 @@ static void    init_forks(t_prg *prg)
     i = 0;
     while (i < prg->philo_num)
     {
-        prg->forks[i].av = 1;
+        if (i != 0 && i != prg->philo_num - 1)
+        {
+            prg->forks[i].ids[0] = i + 1;
+            prg->forks[i].ids[1] = i + 2;
+        }
+        else
+        {
+            prg->forks[i].ids[0] = 1;
+            if (i == 0)
+                prg->forks[i].ids[1] = 2;
+            else
+                prg->forks[i].ids[1] = prg->philo_num;
+        }
+
+        prg->forks[i].philo_id = prg->forks[i].ids[0];
         if (!init_mutex(&prg->forks[i].lock, prg))
         {        
             while (--i >= 0)

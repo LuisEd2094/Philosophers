@@ -2,7 +2,6 @@
 
 bool init_mutex(pthread_mutex_t *thread, t_prg *prg)
 {
-    printf("creating mutex\n");
     if (pthread_mutex_init(thread, NULL))
     {
         prg->err = INIT_MUTEX_ERROR;
