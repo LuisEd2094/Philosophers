@@ -55,7 +55,7 @@ typedef struct s_prg
 
 typedef enum s_error
 {
-	INIT_THREAD_ERROR = 10,
+	INIT_MUTEX_ERROR = 10,
 	MALLOC_ERROR,
 	TIME_ERROR,
 	THREAD_CREATE_ERROR
@@ -63,7 +63,7 @@ typedef enum s_error
 } t_error_code;
 
 
-# define INIT_THREAD_ERR_MSSG "There was an error when init a new thread, \
+# define INIT_MUTEX_ERR_MSSG "There was an error when init a new thread, \
 closing program.\n"
 # define MALLOC_ERR_MSSG "There was an error allocating memory, \
 closing program.\n"
@@ -82,11 +82,13 @@ closing program.\n"
 void    parse_arguments(int argc, char *argv[]);
 //INIT FUNCTIONS //
 void    init(t_prg *prg, char **argv, int argc);
-void	init_mutex(pthread_mutex_t *thread, t_prg *prg);
+bool	init_mutex(pthread_mutex_t *thread, t_prg *prg);
 // PRINT ERR FUNCTIONS //
 void    print_err_prg(char *err, t_prg *prg);
 // CLOSE PROGRAM FUNCTIONS //
 void    close_prg(t_prg *prg);
+void	free_mallocs(t_prg *prg);
+
 // GET CURRENT TIMETIME //
 uint64_t	get_time(t_prg *prg);
 // ONE PHILE CASE //

@@ -16,7 +16,14 @@ static void    init_prg(t_prg *prg, char **argv, int argc)
     prg->err = 0;
     prg->start_time = 0;
     prg->num_threads = 0;
-    init_mutex(&(prg->lock), prg);
+    prg->tid = NULL;
+    prg->forks = NULL;
+    prg->philos = NULL;
+    if (!init_mutex(&(prg->lock), prg))
+    {
+        printf("%s", prg->err_msg);
+        exit (prg->err);
+    }
 }
 
 static void    malloc_data(t_prg *prg)
@@ -27,8 +34,10 @@ static void    malloc_data(t_prg *prg)
      prg->philo_num);
     if (!prg->tid || !prg->forks || !prg->philos)
     {
-        prg->err = MALLOC_ERROR;
-        print_err_prg(MALLOC_ERR_MSSG, prg);
+        free_mallocs(prg);
+        pthread_mutex_destroy(&(prg->lock));
+        printf("%s", MALLOC_ERR_MSSG);
+        exit(MALLOC_ERROR);
     }
 
 }

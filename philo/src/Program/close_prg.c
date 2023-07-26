@@ -21,7 +21,7 @@ void destroy(pthread_mutex_t * mutex, char * str)
 
 }
 
-static void    close_threads(t_prg *prg)
+static void    close_mutex(t_prg *prg)
 {
     int i;
 
@@ -29,14 +29,16 @@ static void    close_threads(t_prg *prg)
     i = -1;
     while (++i < prg->philo_num)
     {
-        destroy(&(prg->forks[i].lock), "Prg Fork");
-        destroy(&(prg->philos[i].lock), "Prg Philo");
+        if (prg->forks)
+            destroy(&(prg->forks[i].lock), "Prg Fork");
+        if (prg->philos)
+            destroy(&(prg->philos[i].lock), "Prg Philo");
         //pthread_detach(prg->philos[i].t1);
         //pthread_detach(prg->tid[i]);
     }
 
 }
-static void free_mallocs(t_prg *prg)
+void free_mallocs(t_prg *prg)
 {
     if (prg->tid)
         free(prg->tid);
@@ -50,7 +52,7 @@ void    close_prg(t_prg *prg)
 {
     while (prg->num_threads != 0)
         usleep(1); 
-    close_threads(prg);
+    close_mutex(prg);
     free_mallocs(prg);
     printf("Num threads %i\n", prg->num_threads);
     if (prg->err)
