@@ -12,8 +12,8 @@ void    work_else(t_prg *prg)
     {
         if (!create_thread(&(prg->tid[i]), &(routine), &(prg->philos[i])))
             close_prg(prg);
+        pthread_detach((prg->tid[i]));
         i++;
-        //pthread_detach(prg->tid[i]);
     }
     while(check_conditions_continue_thread(prg))
         usleep(0);
