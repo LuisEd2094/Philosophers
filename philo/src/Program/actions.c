@@ -8,9 +8,15 @@ void    philo_sleep(t_philo *philo)
 
 void    drop_forks(t_philo *philo)
 {
-    //philo->l_fork->av = 1;
+    int i;
+
+    if (philo->id == philo->l_fork->ids[0])
+        i = 1;
+    else
+        i = 0;
+    philo->r_fork->philo_id = philo->r_fork->ids[i];
+    philo->l_fork->philo_id = philo->l_fork->ids[i];
     pthread_mutex_unlock(&(philo->l_fork->lock));
-    //philo->r_fork->av = 1;
 	pthread_mutex_unlock(&(philo->r_fork->lock));
 }
 
