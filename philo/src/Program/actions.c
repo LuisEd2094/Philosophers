@@ -10,11 +10,15 @@ void    drop_forks(t_philo *philo)
 {
     int i;
 
-    if (philo->id == philo->l_fork->ids[0])
+    if (philo->id == philo->r_fork->ids[0])
         i = 1;
     else
         i = 0;
     philo->r_fork->philo_id = philo->r_fork->ids[i];
+    if (philo->id == philo->l_fork->ids[0])
+        i = 1;
+    else
+        i = 0;
     philo->l_fork->philo_id = philo->l_fork->ids[i];
     pthread_mutex_unlock(&(philo->l_fork->lock));
 	pthread_mutex_unlock(&(philo->r_fork->lock));
@@ -22,6 +26,9 @@ void    drop_forks(t_philo *philo)
 
 bool    waiting_for_fork(t_philo *philo)
 {
+    //if (philo->id == 4)
+      //  printf("right %i left %i\n",philo->r_fork->philo_id ,philo->l_fork->philo_id);
+    
     if (philo->r_fork->philo_id != philo->id || philo->l_fork->philo_id != philo->id)
         return(1);
     return (0);
@@ -39,8 +46,8 @@ bool    wait_for_fork(t_philo *philo, t_prg *prg)
 bool take_forks(t_philo *philo)
 {
    // printf("PHILo ID %i ID right %i ID left %i\n", philo->id, philo->r_fork->philo_id, philo->l_fork->philo_id);
-    //if (!wait_for_fork(philo, philo->prg))
-      //  return (0);
+    if (!wait_for_fork(philo, philo->prg))
+        return (0);
     pthread_mutex_lock(&philo->r_fork->lock);
     //philo->r_fork->av = 0;
     //printf("RIGHT %p ID %i\n", &(philo->r_fork), philo->id);

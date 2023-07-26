@@ -35,6 +35,8 @@ void	*routine(void *philo_p)
 
     philo = (t_philo *)philo_p;
     update_num_threads(philo->prg, 1);
+    while (!philo->prg->can_start)
+        usleep(0);
     //printf("time to die%li current time%li death time %li", philo->prg->death_time, get_time(philo->prg), philo->time_to_die);
     philo->time_to_die = philo->prg->death_time + get_time(philo->prg);
     //printf("time to die %li current time %li death time %li\n", philo->prg->death_time, get_time(philo->prg), philo->time_to_die);

@@ -42,6 +42,7 @@ typedef struct s_prg
 	int				err;
 	char			*err_msg;
     bool            dead;
+	bool			can_start;
     int				finished;
     t_philo         *philos;
 	uint64_t		death_time;
@@ -50,7 +51,6 @@ typedef struct s_prg
 	uint64_t		start_time;
     t_fork			*forks;
     pthread_mutex_t lock;
-	void	*f_test;
 } t_prg;
 
 
