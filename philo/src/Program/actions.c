@@ -16,11 +16,11 @@ void    drop_forks(t_philo *philo)
 
 bool    wait_for_fork(t_fork *fork, t_prg *prg)
 {
-    while (!fork->av && !prg->dead)
+    while (!fork->av && !prg->dead && check_conditions_continue_thread(prg))
         usleep(1);
-    if (prg->dead)
-        return (0);
-    return (1); 
+    if (fork->av)
+        return (1);
+    return (0); 
 }
 
 bool take_forks(t_philo *philo)

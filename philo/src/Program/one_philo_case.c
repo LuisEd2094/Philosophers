@@ -3,10 +3,14 @@
 void    one_philo_case(t_prg *prg)
 {
     prg->start_time = get_time(prg);
-    pthread_create(&(prg->tid[0]), NULL, &(routine), &(prg->philos[0]));
+    prg->f_test = &routine;
+    create_thread(&(prg->tid[0]), &(routine), &(prg->philos[0]));
     pthread_detach(prg->tid[0]);
-    while(!prg->dead)
+    while(check_conditions_continue_thread(prg))
+    {
+        //printf("I AM IN ONE PHILE\n");
         usleep(0);
-    printf("CLOSING\n");
+
+    }
     close_prg(prg); 
 }

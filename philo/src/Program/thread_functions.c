@@ -1,38 +1,31 @@
 #include <philo.h>
 
-void    update_num_threads(t_prg *prg, int value)
-{
-    pthread_mutex_lock(&(prg->lock));
-    prg->num_threads += value;
-    pthread_mutex_unlock(&(prg->lock));
-}
-
 void    *supervisor(void *philo_p)
 {
     t_philo *philo;
 
     philo = (t_philo *)philo_p;
     update_num_threads(philo->prg, 1);
-    while (!philo->prg->dead)
+    while (!(philo->prg->dead) && !(philo->prg->err))
     {
-        pthread_mutex_lock(&philo->lock);
+        pthread_mutex_lock(&(philo->lock));
         if ((get_time(philo->prg) >= philo->time_to_die))
         {
-            pthread_mutex_lock(&philo->prg->lock);
+            pthread_mutex_lock(&(philo->prg->lock));
             philo->prg->dead = 1;
             print_philo_state(DIED, philo);
-            pthread_mutex_unlock(&philo->prg->lock);
+            pthread_mutex_unlock(&(philo->prg->lock));
         }
         if (philo->eat_count == philo->prg->meals_nb)
         {
-            pthread_mutex_lock(&philo->prg->lock);
+            pthread_mutex_lock(&(philo->prg->lock));
             philo->prg->finished++;
-            pthread_mutex_unlock(&philo->prg->lock);
+            pthread_mutex_unlock(&(philo->prg->lock));
         }
         pthread_mutex_unlock(&philo->lock);
     }
     update_num_threads(philo->prg, -1);
-    return ((void *)0);
+    return (NULL);
 }
 
 
@@ -43,10 +36,14 @@ void	*routine(void *philo_p)
     philo = (t_philo *)philo_p;
     update_num_threads(philo->prg, 1);
     philo->time_to_die = philo->prg->death_time + get_time(philo->prg);
-    if (pthread_create(&(philo->t1), NULL, &supervisor, (void *)philo))
-        print_err_prg("ERROR\n", (philo->prg));
+    philo->prg->f_test = &supervisor;
+    if (!create_thread(&(philo->t1), &supervisor, (void *)philo))
+    {
+        update_num_threads(philo->prg, -1);
+        return (NULL);
+    }
     pthread_detach(philo->t1);
-    while (!philo->prg->dead)
+    while ((check_conditions_continue_thread(philo->prg)))
     {
         if (!take_forks(philo))
             break ;
@@ -55,5 +52,5 @@ void	*routine(void *philo_p)
         print_philo_state(IS_THINKING, philo);
     }
     update_num_threads(philo->prg, -1);
-    return ((void *) 0);
+    return (NULL);
 }

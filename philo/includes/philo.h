@@ -39,8 +39,9 @@ typedef struct s_prg
     int             philo_num;
     int             meals_nb;
 	int				err;
+	char			*err_msg;
     bool            dead;
-    int            finished;
+    int				finished;
     t_philo         *philos;
 	uint64_t		death_time;
 	uint64_t		eat_time;
@@ -48,6 +49,7 @@ typedef struct s_prg
 	uint64_t		start_time;
     t_fork			*forks;
     pthread_mutex_t lock;
+	void	*f_test;
 } t_prg;
 
 
@@ -55,7 +57,8 @@ typedef enum s_error
 {
 	INIT_THREAD_ERROR = 10,
 	MALLOC_ERROR,
-	TIME_ERROR
+	TIME_ERROR,
+	THREAD_CREATE_ERROR
 
 } t_error_code;
 
@@ -65,6 +68,8 @@ closing program.\n"
 # define MALLOC_ERR_MSSG "There was an error allocating memory, \
 closing program.\n"
 # define TIME_ERR_MSG "There was an error getting current time, \
+closing program.\n"
+# define THREAD_CREATE_ERROR_MSG "There was an error creating a new thread, \
 closing program.\n"
 
 # define TAKE_FORK "has taken a fork"
@@ -93,6 +98,11 @@ bool	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
 void    drop_forks(t_philo *philo);
 void    philo_sleep(t_philo *philo);
+// THREAD HANDLE FUNCTIONS//
+void    update_num_threads(t_prg *prg, int value);
+bool    create_thread(pthread_t *tid, void *(*f)(void *), t_philo *philo_p);
+bool    check_if_reached_num_meals(t_prg *prg);
+bool	check_conditions_continue_thread(t_prg *prg);
 
 
 
