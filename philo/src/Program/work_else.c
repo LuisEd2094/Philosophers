@@ -14,8 +14,9 @@ void    work_else(t_prg *prg)
             close_prg(prg);
         pthread_detach((prg->tid[i]));
         i++;
+        //usleep(1000);
     }
-    while(check_conditions_continue_thread(prg))
-        usleep(0);
-    close_prg(prg); 
+    //while(check_conditions_continue_thread(prg))
+      //  usleep(0);
+    //close_prg(prg); 
 }

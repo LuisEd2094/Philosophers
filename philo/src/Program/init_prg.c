@@ -51,8 +51,18 @@ static void    init_forks(t_prg *prg)
     {
         if (i != 0 && i != prg->philo_num - 1)
         {
-            prg->forks[i].ids[0] = i + 1;
-            prg->forks[i].ids[1] = i + 2;
+            if (i % 2 == 0)
+            {
+                prg->forks[i].ids[0] = i + 1;
+                prg->forks[i].ids[1] = i + 2;
+            }
+            else
+            {
+                prg->forks[i].ids[1] = i + 1;
+                prg->forks[i].ids[0] = i + 2;
+                printf("Fork %i first %i second %i\n", i ,prg->forks[i].ids[0], prg->forks[i].ids[1]);
+            }
+
         }
         else
         {

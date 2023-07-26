@@ -37,7 +37,7 @@ void	*routine(void *philo_p)
     update_num_threads(philo->prg, 1);
     //printf("time to die%li current time%li death time %li", philo->prg->death_time, get_time(philo->prg), philo->time_to_die);
     philo->time_to_die = philo->prg->death_time + get_time(philo->prg);
-    printf("time to die %li current time %li death time %li\n", philo->prg->death_time, get_time(philo->prg), philo->time_to_die);
+    //printf("time to die %li current time %li death time %li\n", philo->prg->death_time, get_time(philo->prg), philo->time_to_die);
     if (!create_thread(&(philo->t1), &supervisor, (void *)philo))
     {
         update_num_threads(philo->prg, -1);

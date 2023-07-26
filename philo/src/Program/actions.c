@@ -39,8 +39,8 @@ bool    wait_for_fork(t_philo *philo, t_prg *prg)
 bool take_forks(t_philo *philo)
 {
    // printf("PHILo ID %i ID right %i ID left %i\n", philo->id, philo->r_fork->philo_id, philo->l_fork->philo_id);
-    if (!wait_for_fork(philo, philo->prg))
-        return (0);
+    //if (!wait_for_fork(philo, philo->prg))
+      //  return (0);
     pthread_mutex_lock(&philo->r_fork->lock);
     //philo->r_fork->av = 0;
     //printf("RIGHT %p ID %i\n", &(philo->r_fork), philo->id);
