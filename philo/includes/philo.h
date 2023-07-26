@@ -87,6 +87,7 @@ bool	init_mutex(pthread_mutex_t *thread, t_prg *prg);
 void    print_err_prg(char *err, t_prg *prg);
 // CLOSE PROGRAM FUNCTIONS //
 void    close_prg(t_prg *prg);
+void    close_on_failed_init(t_prg *prg);
 void	free_mallocs(t_prg *prg);
 
 // GET CURRENT TIMETIME //

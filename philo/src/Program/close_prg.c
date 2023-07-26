@@ -48,6 +48,14 @@ void free_mallocs(t_prg *prg)
         free(prg->philos);
 }
 
+void    close_on_failed_init(t_prg *prg)
+{
+    free_mallocs(prg);
+    pthread_mutex_destroy(&(prg->lock));
+    printf("%s", prg->err_msg);
+    exit(prg->err);
+}
+
 void    close_prg(t_prg *prg)
 {
     while (prg->num_threads != 0)
