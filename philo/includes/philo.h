@@ -63,7 +63,7 @@ typedef enum s_error
 } t_error_code;
 
 
-# define INIT_MUTEX_ERR_MSSG "There was an error when init a new thread, \
+# define INIT_MUTEX_ERR_MSSG "There was an error when init a new mutex, \
 closing program.\n"
 # define MALLOC_ERR_MSSG "There was an error allocating memory, \
 closing program.\n"

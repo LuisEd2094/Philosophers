@@ -47,8 +47,8 @@ static void    init_forks(t_prg *prg)
         prg->forks[i].av = 1;
         if (!init_mutex(&prg->forks[i].lock, prg))
         {        
-            while (i >= 0)
-                destroy(&(prg->forks[i--].lock), "fork");
+            while (--i >= 0)
+                destroy(&(prg->forks[i].lock), "fork");
             close_on_failed_init(prg);
         };
     }
@@ -71,7 +71,15 @@ static void    init_philos(t_prg *prg)
     i = 0;
     while (i < prg->philo_num)
     {
-        init_mutex(&(prg->philos[i].lock), prg);
+        if (!init_mutex(&prg->philos[i].lock, prg))
+        {        
+            while (--i >= 0)
+                destroy(&(prg->philos[i].lock), "philos");
+            i = prg->philo_num - 1;
+            while (i >= 0)
+                destroy(&(prg->forks[i--].lock), "fork");
+            close_on_failed_init(prg);
+        };
         prg->philos[i].prg = prg;
         prg->philos[i].id = i + 1;
         prg->philos[i].time_to_die = prg->death_time;

@@ -7,6 +7,7 @@ void destroy(pthread_mutex_t * mutex, char * str)
 {
 
     int result = pthread_mutex_destroy(mutex); 
+    printf("CLOSED %s\n", str);
     if (result == 0) {
         printf("Mutex destroyed successfully.\n");
     } else {
@@ -29,12 +30,8 @@ static void    close_mutex(t_prg *prg)
     i = -1;
     while (++i < prg->philo_num)
     {
-        if (prg->forks)
-            destroy(&(prg->forks[i].lock), "Prg Fork");
-        if (prg->philos)
-            destroy(&(prg->philos[i].lock), "Prg Philo");
-        //pthread_detach(prg->philos[i].t1);
-        //pthread_detach(prg->tid[i]);
+        destroy(&(prg->forks[i].lock), "Prg Fork");
+        destroy(&(prg->philos[i].lock), "Prg Philo");
     }
 
 }
