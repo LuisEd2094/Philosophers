@@ -7,7 +7,7 @@ void    work_else(t_prg *prg)
 
     i = 0;
     prg->start_time = get_time(prg);
-    printf("%i\n", prg->philo_num);
+    printf("Start Time %li\n", prg->start_time);
     while (i < prg->philo_num)
     {
         if (!create_thread(&(prg->tid[i]), &(routine), &(prg->philos[i])))

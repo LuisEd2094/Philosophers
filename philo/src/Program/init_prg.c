@@ -5,8 +5,8 @@ static void    init_prg(t_prg *prg, char **argv, int argc)
 {
     prg->philo_num = ft_atoi(argv[1]);
     prg->death_time = (uint64_t) ft_atoi(argv[2]);
-    prg->eat_time = (uint64_t) ft_atoi(argv[3]);
-	prg->sleep_time = (uint64_t) ft_atoi(argv[4]);
+    prg->eat_time = (uint64_t) ft_atoi(argv[3]) * 1000;
+	prg->sleep_time = (uint64_t) ft_atoi(argv[4]) * 1000;
     if (argc == 6)
 		prg->meals_nb = ft_atoi(argv[5]);
     else
@@ -97,7 +97,7 @@ static void    init_philos(t_prg *prg)
         }
         prg->philos[i].prg = prg;
         prg->philos[i].id = i + 1;
-        prg->philos[i].time_to_die = prg->death_time;
+        prg->philos[i].time_to_die = 0;
         prg->philos[i].eat_count = 0;
         prg->philos[i].status = 0;
         prg->philos[i].t1 = 0;
