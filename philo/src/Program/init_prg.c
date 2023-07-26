@@ -41,8 +41,8 @@ static void    init_forks(t_prg *prg)
 {
     int i;
 
-    i = -1;
-    while (++i < prg->philo_num)
+    i = 0;
+    while (i < prg->philo_num)
     {
         prg->forks[i].av = 1;
         if (!init_mutex(&prg->forks[i].lock, prg))
@@ -51,10 +51,6 @@ static void    init_forks(t_prg *prg)
                 destroy(&(prg->forks[i].lock), "fork");
             close_on_failed_init(prg);
         };
-    }
-    i = 0;
-    while (i < prg->philo_num)
-    {
         prg->philos[i].l_fork = &prg->forks[i];
         if (i == 0)
             prg->philos[i].r_fork = &prg->forks[prg->philo_num - 1];
