@@ -54,6 +54,9 @@ void    close_prg(t_prg *prg)
     free_mallocs(prg);
     printf("Num threads %i\n", prg->num_threads);
     if (prg->err)
+    {
+        printf("%s", prg->err_msg);
         exit(prg->err);
+    }
     exit(0);
 }

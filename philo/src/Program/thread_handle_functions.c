@@ -9,14 +9,14 @@ void    update_num_threads(t_prg *prg, int value)
 
 bool    create_thread(pthread_t *tid, void *(*f)(void *), t_philo *philo_p)
 {
-    /*printf("%p %p\n", f, philo_p->prg->f_test);
+    printf("%p %p\n", f, philo_p->prg->f_test);
 
     if (f == philo_p->prg->f_test)
     {
         philo_p->prg->err = THREAD_CREATE_ERROR;
         philo_p->prg->err_msg = THREAD_CREATE_ERROR_MSG;
         return (0);
-    }*/
+    }
     //printf("%p %p\n", f, philo_p->prg->f_test);
     if (pthread_create(tid, NULL, f, (void *)philo_p))
     {
