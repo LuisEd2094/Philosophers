@@ -78,6 +78,11 @@ closing program.\n"
 # define IS_THINKING "is thinking"
 # define DIED "died"
 
+
+void destroy(pthread_mutex_t * mutex, char * str);
+
+
+
 // PARSE ARGUMENTS API //
 void    parse_arguments(int argc, char *argv[]);
 //INIT FUNCTIONS //

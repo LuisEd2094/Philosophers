@@ -34,7 +34,6 @@ static void    malloc_data(t_prg *prg)
         prg->err = MALLOC_ERROR;
         prg->err_msg = MALLOC_ERR_MSSG;
         close_on_failed_init(prg);
-
     }
 }
 
@@ -46,7 +45,12 @@ static void    init_forks(t_prg *prg)
     while (++i < prg->philo_num)
     {
         prg->forks[i].av = 1;
-        init_mutex(&prg->forks[i].lock, prg);
+        if (!init_mutex(&prg->forks[i].lock, prg))
+        {        
+            while (i >= 0)
+                destroy(&(prg->forks[i--].lock), "fork");
+            close_on_failed_init(prg);
+        };
     }
     i = 0;
     while (i < prg->philo_num)
