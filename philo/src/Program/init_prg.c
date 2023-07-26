@@ -50,7 +50,7 @@ static void    init_forks(t_prg *prg)
             while (--i >= 0)
                 destroy(&(prg->forks[i].lock), "fork");
             close_on_failed_init(prg);
-        };
+        }
         prg->philos[i].l_fork = &prg->forks[i];
         if (i == 0)
             prg->philos[i].r_fork = &prg->forks[prg->philo_num - 1];
@@ -75,7 +75,7 @@ static void    init_philos(t_prg *prg)
             while (i >= 0)
                 destroy(&(prg->forks[i--].lock), "fork");
             close_on_failed_init(prg);
-        };
+        }
         prg->philos[i].prg = prg;
         prg->philos[i].id = i + 1;
         prg->philos[i].time_to_die = prg->death_time;
