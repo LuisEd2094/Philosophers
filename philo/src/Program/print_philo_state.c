@@ -8,8 +8,8 @@ void    print_philo_state(char *str, t_philo *philo)
 
     time = get_time(philo->prg) - (philo->prg->start_time);
     if (!philo->prg->dead)
-        printf("%lu %d %s\n", time, philo->id, str);
+        printf("%llu %d %s\n", time, philo->id, str);
     else if(ft_strcmp(str, "died") == 0)
-        printf("%lu %d %s\n", time, philo->id, str);
+        printf("%llu %d %s\n", time, philo->id, str);
 
 }

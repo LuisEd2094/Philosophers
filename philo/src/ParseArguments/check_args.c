@@ -10,7 +10,7 @@ static void check_values(int i, char *argv)
     value = ft_atoi(argv);
     if (i == 1 && value > MAX_PHILOS)
         print_err_args (ARG_INVALID_PHILOS, INVALID_PHILOS);
-    else if ((i >= 2 || i <= 4) && value > MAX_TIME)
+    else if ((i >= 2 && i <= 4) && value > MAX_TIME)
         print_err_args (ARG_INVALID_TIME, INVALID_TIME);
     else if (value <= 0)
         print_err_args (ARG_ZERO_VALUE, INVALID_VALUE);
