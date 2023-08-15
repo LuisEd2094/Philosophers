@@ -26,7 +26,7 @@ typedef struct s_philo
 	pthread_t		t1;
 	int				id;
 	int				eat_count;
-	bool			status;
+	bool			can_continue;
 	uint64_t		time_to_die;
 	pthread_mutex_t	lock;
 	t_fork			*r_fork;

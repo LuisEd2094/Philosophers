@@ -108,7 +108,7 @@ static void    init_philos(t_prg *prg)
         prg->philos[i].id = i + 1;
         prg->philos[i].time_to_die = 0;
         prg->philos[i].eat_count = 0;
-        prg->philos[i].status = 0;
+        prg->philos[i].can_continue = 1;
         prg->philos[i].t1 = 0;
         i++;
     }

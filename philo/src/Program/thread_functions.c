@@ -15,13 +15,25 @@ void    *supervisor(void *philo_p)
             philo->prg->dead = 1;
             print_philo_state(DIED, philo);
             pthread_mutex_unlock(&(philo->prg->lock));
+            philo->can_continue = 0;
             pthread_mutex_unlock(&philo->lock);
             break ;
         }
-        if (philo->eat_count == philo->prg->meals_nb)
+        if (philo->eat_count == philo->prg->meals_nb && philo->prg->finished <  philo->prg->philo_num)
         {
             pthread_mutex_lock(&(philo->prg->lock));
-            philo->prg->finished++;
+            if(philo->can_continue)
+                philo->prg->finished++;
+            philo->can_continue = 0;
+            if (philo->prg->finished >= philo->prg->philo_num)
+            {
+                printf("philo->prg->finished[%i] philo supervisor [%i] philo->prg->philo_num [%i] counted to finish\n", philo->prg->finished, philo->id, philo->prg->philo_num);
+
+
+                pthread_mutex_unlock(&(philo->prg->lock));
+                pthread_mutex_unlock(&philo->lock);
+                break ;
+            }
             pthread_mutex_unlock(&(philo->prg->lock));
         }
         pthread_mutex_unlock(&philo->lock);
@@ -53,15 +65,16 @@ void	*routine(void *philo_p)
     {
         if (!take_forks(philo))
             break ;
-        //if (check_conditions_continue_thread(philo))
+        if (philo->can_continue)
             eat(philo);
-        //if (check_conditions_continue_thread(philo))
+        if (philo->can_continue)
             drop_forks(philo);
-        //if (check_conditions_continue_thread(philo))
+        if (philo->can_continue)
             philo_sleep(philo);
-        //if (check_conditions_continue_thread(philo))
+        if (philo->can_continue)
             print_philo_state(IS_THINKING, philo);
     }
+    printf("philo [%i] left it's loop\n", philo->id);
     update_num_threads(philo->prg, -1);
     return (NULL);
 }
