@@ -27,7 +27,7 @@ void    *supervisor(void *philo_p)
             philo->can_continue = 0;
             if (philo->prg->finished >= philo->prg->philo_num)
             {
-                printf("philo->prg->finished[%i] philo supervisor [%i] philo->prg->philo_num [%i] counted to finish\n", philo->prg->finished, philo->id, philo->prg->philo_num);
+                //printf("philo->prg->finished[%i] philo supervisor [%i] philo->prg->philo_num [%i] counted to finish\n", philo->prg->finished, philo->id, philo->prg->philo_num);
 
 
                 pthread_mutex_unlock(&(philo->prg->lock));

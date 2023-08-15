@@ -71,7 +71,7 @@ void    eat(t_philo *philo)
     philo->time_to_die = get_time(philo->prg) + philo->prg->death_time;
     print_philo_state(IS_EATING, philo);
     usleep(philo->prg->eat_time);
-    printf("i am updating eatcount from philo : {%i}\n", philo->id);
+    //printf("i am updating eatcount from philo : {%i}\n", philo->id);
     philo->eat_count++;
     pthread_mutex_unlock(&philo->lock);
 }
