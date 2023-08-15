@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     if (prg.philo_num == 1)
         one_philo_case(&prg);
     else
-        work_else(&prg);
+        work_more_one_philo(&prg);
     printf("VALID ARGUMENTS\n");
     close_prg(&prg);    
 }

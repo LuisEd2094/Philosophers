@@ -101,7 +101,7 @@ uint64_t	get_time(t_prg *prg);
 // ONE PHILE CASE //
 void    one_philo_case(t_prg *prg);
 // ELSE CASE //
-void    work_else(t_prg *prg);
+void    work_more_one_philo(t_prg *prg);
 // THREAD FUNCTIONS //
 void	*routine(void *philo_pointer);
 // ACTION FUNCTIONS //

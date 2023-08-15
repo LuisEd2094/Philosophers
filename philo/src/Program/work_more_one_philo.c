@@ -1,6 +1,6 @@
 #include <philo.h>
 
-void    work_else(t_prg *prg)
+void    work_more_one_philo(t_prg *prg)
 {
     int         i;
     //pthread_t   t0;
@@ -17,7 +17,7 @@ void    work_else(t_prg *prg)
     }
     prg->can_start = 1;
     prg->start_time = get_time(prg);
-    printf("Start Time %lli\n", prg->start_time);
+    printf("Start Time %li\n", prg->start_time);
     //while(check_conditions_continue_thread(prg))
       //  usleep(0);
     //close_prg(prg); 

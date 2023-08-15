@@ -60,7 +60,6 @@ bool take_forks(t_philo *philo)
     pthread_mutex_lock(&philo->l_fork->lock);
     //philo->l_fork->av = 0;
     //printf("left %p ID %i\n", &( philo->r_fork), philo->id);
-
     print_philo_state(TAKE_FORK, philo);
     return (1);
 }
