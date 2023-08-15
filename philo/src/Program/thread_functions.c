@@ -10,6 +10,8 @@ void    *supervisor(void *philo_p)
     while (!(philo->prg->dead) && !(philo->prg->err) && (philo->prg->finished != philo->prg->philo_num))
     {
         usleep(philo->prg->death_time * 1000);
+        if (philo->prg->finished == philo->prg->philo_num )// || philo->eat_count == philo->prg->meals_nb)
+            break;
         pthread_mutex_lock(&(philo->lock));
         printf("time since start:{%lu} {%lu} time_to_die {%lu} current time [%i] philo id\n", (get_time(philo->prg) - (philo->prg->start_time)),philo->time_to_die, get_time(philo->prg), philo->id);
         if ((get_time(philo->prg) >= philo->time_to_die))
@@ -24,23 +26,6 @@ void    *supervisor(void *philo_p)
             philo->can_continue = 0;
             pthread_mutex_unlock(&philo->lock);
             break ;
-        }
-        if (philo->eat_count == philo->prg->meals_nb && philo->prg->finished <  philo->prg->philo_num)
-        {
-            pthread_mutex_lock(&(philo->prg->lock));
-            if(philo->can_continue)
-                philo->prg->finished++;
-            philo->can_continue = 0;
-            if (philo->prg->finished >= philo->prg->philo_num)
-            {
-                //printf("philo->prg->finished[%i] philo supervisor [%i] philo->prg->philo_num [%i] counted to finish\n", philo->prg->finished, philo->id, philo->prg->philo_num);
-
-
-                pthread_mutex_unlock(&(philo->prg->lock));
-                pthread_mutex_unlock(&philo->lock);
-                break ;
-            }
-            pthread_mutex_unlock(&(philo->prg->lock));
         }
         pthread_mutex_unlock(&philo->lock);
     }
@@ -71,12 +56,12 @@ void	*routine(void *philo_p)
     {
         if (!take_forks(philo))
             break ;
-        if (philo->can_continue)
+        if (philo->can_continue && check_conditions_continue_thread(philo))
             eat(philo);
         drop_forks(philo);
-        if (philo->can_continue)
+        if (philo->can_continue && check_conditions_continue_thread(philo))
             philo_sleep(philo);
-        if (philo->can_continue)
+        if (philo->can_continue && check_conditions_continue_thread(philo))
             print_philo_state(IS_THINKING, philo);
     }
     printf("philo [%i] left it's loop\n", philo->id);
