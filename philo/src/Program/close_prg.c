@@ -62,7 +62,7 @@ void    close_prg(t_prg *prg)
         usleep(1); 
     close_mutex(prg);
     free_mallocs(prg);
-    printf("Num threads %i\n", prg->num_threads);
+    printf("Num threads %i meals number %i\n", prg->num_threads, prg->meals_nb);
     if (prg->err)
     {
         printf("%s", prg->err_msg);

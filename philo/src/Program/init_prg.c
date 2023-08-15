@@ -60,7 +60,6 @@ static void    init_forks(t_prg *prg)
             {
                 prg->forks[i].ids[1] = i + 1;
                 prg->forks[i].ids[0] = i + 2;
-                printf("Fork %i first %i second %i\n", i ,prg->forks[i].ids[0], prg->forks[i].ids[1]);
             }
 
         }

@@ -18,16 +18,17 @@ bool    create_thread(pthread_t *tid, void *(*f)(void *), t_philo *philo_p)
     return (1);
 }
 
-bool    check_if_reached_num_meals(t_prg *prg)
+bool    check_if_reached_num_meals(t_philo *philo)
 {
-    if (prg->finished == prg->meals_nb)
+    //printf("[%i] checked if number of meals\nfinished [%i]\nmeals_count [%i]\n",philo->prg->finished == philo->prg->meals_nb, philo->prg->finished, philo->prg->meals_nb);
+    if (philo->eat_count == philo->prg->meals_nb)
         return (1);
     return (0);
 }
 
-bool	check_conditions_continue_thread(t_prg *prg)
+bool	check_conditions_continue_thread(t_philo *philo)
 {
-    if (prg->dead || prg->err || check_if_reached_num_meals(prg))
+    if (philo->prg->dead || philo->prg->err)
         return (0);
     return (1); 
 }

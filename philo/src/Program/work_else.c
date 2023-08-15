@@ -6,8 +6,7 @@ void    work_else(t_prg *prg)
     //pthread_t   t0;
 
     i = 0;
-    prg->start_time = get_time(prg);
-    printf("Start Time %li\n", prg->start_time);
+
     prg->can_start = 0;
     while (i < prg->philo_num)
     {
@@ -17,6 +16,8 @@ void    work_else(t_prg *prg)
         i++;
     }
     prg->can_start = 1;
+    prg->start_time = get_time(prg);
+    printf("Start Time %li\n", prg->start_time);
     //while(check_conditions_continue_thread(prg))
       //  usleep(0);
     //close_prg(prg); 

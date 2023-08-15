@@ -36,7 +36,7 @@ bool    waiting_for_fork(t_philo *philo)
 
 bool    wait_for_fork(t_philo *philo, t_prg *prg)
 {
-    while (check_conditions_continue_thread(prg) && waiting_for_fork(philo))
+    while (check_conditions_continue_thread(philo) && waiting_for_fork(philo))
         usleep(1);
     if (prg->dead || prg->err)
         return (0);
@@ -70,7 +70,8 @@ void    eat(t_philo *philo)
     pthread_mutex_lock(&philo->lock);
     philo->time_to_die = get_time(philo->prg) + philo->prg->death_time;
     print_philo_state(IS_EATING, philo);
-    philo->eat_count++;
     usleep(philo->prg->eat_time);
+    printf("i am updating eatcount from philo : {%i}\n", philo->id);
+    philo->eat_count++;
     pthread_mutex_unlock(&philo->lock);
 }
