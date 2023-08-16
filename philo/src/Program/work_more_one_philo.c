@@ -15,9 +15,9 @@ void    work_more_one_philo(t_prg *prg)
         pthread_detach((prg->tid[i]));
         i++;
     }
-    prg->can_start = 1;
     prg->start_time = get_time(prg);
-    printf("Start Time %li\n", prg->start_time);
+    prg->can_start = 1;
+    //printf("Start Time %li\n", prg->start_time);
     //while(check_conditions_continue_thread(prg))
       //  usleep(0);
     //close_prg(prg); 

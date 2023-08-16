@@ -31,7 +31,7 @@ bool    wait_for_fork(t_philo *philo, t_prg *prg)
     return (1); 
 }
 
-bool    start_taking_forks(t_philo *philo, pthread_mutex_t *first, pthread_mutex_t *second)
+void    start_taking_forks(t_philo *philo, pthread_mutex_t *first, pthread_mutex_t *second)
 {
         print_philo_state(IS_THINKING, philo);
         pthread_mutex_lock(first);
@@ -39,7 +39,6 @@ bool    start_taking_forks(t_philo *philo, pthread_mutex_t *first, pthread_mutex
         print_philo_state(IS_THINKING, philo);
         pthread_mutex_lock(second);
         print_philo_state(TAKE_FORK, philo);
-        return (1); 
 }
 
 bool take_forks(t_philo *philo)
@@ -88,7 +87,7 @@ void    eat(t_philo *philo)
 {
     pthread_mutex_lock(&philo->lock);
     philo->time_to_die = get_time(philo->prg) + philo->prg->death_time;
-    printf("%lu time_to_die after updating in eat [%i] philo ID \n", philo->time_to_die, philo->id);
+    //printf("%lu time_to_die after updating in eat [%i] philo ID \n", philo->time_to_die, philo->id);
     print_philo_state(IS_EATING, philo);
     usleep(philo->prg->eat_time);
     //printf("i am updating eatcount from philo : {%i}\n", philo->id);
