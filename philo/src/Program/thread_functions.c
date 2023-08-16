@@ -61,8 +61,6 @@ void	*routine(void *philo_p)
         drop_forks(philo);
         if (philo->can_continue && check_conditions_continue_thread(philo))
             philo_sleep(philo);
-        if (philo->can_continue && check_conditions_continue_thread(philo))
-            print_philo_state(IS_THINKING, philo);
     }
     printf("philo [%i] left it's loop\n", philo->id);
     update_num_threads(philo->prg, -1);

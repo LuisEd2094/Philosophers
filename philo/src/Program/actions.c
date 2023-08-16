@@ -8,18 +8,6 @@ void    philo_sleep(t_philo *philo)
 
 void    drop_forks(t_philo *philo)
 {
-    int i;
-
-    if (philo->id == philo->r_fork->ids[0])
-        i = 1;
-    else
-        i = 0;
-    philo->r_fork->philo_id = philo->r_fork->ids[i];
-    if (philo->id == philo->l_fork->ids[0])
-        i = 1;
-    else
-        i = 0;
-    philo->l_fork->philo_id = philo->l_fork->ids[i];
     pthread_mutex_unlock(&(philo->l_fork->lock));
 	pthread_mutex_unlock(&(philo->r_fork->lock));
 }
@@ -43,24 +31,56 @@ bool    wait_for_fork(t_philo *philo, t_prg *prg)
     return (1); 
 }
 
+bool    start_taking_forks(t_philo *philo, pthread_mutex_t *first, pthread_mutex_t *second)
+{
+        print_philo_state(IS_THINKING, philo);
+        pthread_mutex_lock(first);
+        print_philo_state(TAKE_FORK, philo);
+        print_philo_state(IS_THINKING, philo);
+        pthread_mutex_lock(second);
+        print_philo_state(TAKE_FORK, philo);
+        return (1); 
+}
+
 bool take_forks(t_philo *philo)
 {
    // printf("PHILo ID %i ID right %i ID left %i\n", philo->id, philo->r_fork->philo_id, philo->l_fork->philo_id);
-    if (!wait_for_fork(philo, philo->prg))
-        return (0);
-    pthread_mutex_lock(&philo->r_fork->lock);
+    //if (!wait_for_fork(philo, philo->prg))
+      //  return (0);
+    if (philo->id != philo->prg->philo_num)
+    {
+        start_taking_forks(philo, &(philo->l_fork->lock), &(philo->r_fork->lock));
+        /*
+        print_philo_state(IS_THINKING, philo);
+        pthread_mutex_lock(&philo->l_fork->lock);
+        print_philo_state(TAKE_FORK, philo);
+        print_philo_state(IS_THINKING, philo);
+        pthread_mutex_lock(&philo->r_fork->lock);
+        print_philo_state(TAKE_FORK, philo);*/
+    }
+    else
+    {
+        start_taking_forks(philo, &(philo->r_fork->lock), &(philo->l_fork->lock));
+/*
+        print_philo_state(IS_THINKING, philo);
+        pthread_mutex_lock(&philo->r_fork->lock);
+        print_philo_state(TAKE_FORK, philo);
+        print_philo_state(IS_THINKING, philo);
+        pthread_mutex_lock(&philo->l_fork->lock);
+        print_philo_state(TAKE_FORK, philo);*/
+    }
+
     //philo->r_fork->av = 0;
     //printf("RIGHT %p ID %i\n", &(philo->r_fork), philo->id);
-    print_philo_state(TAKE_FORK, philo);
     //if (!wait_for_fork(philo->l_fork, philo->prg))
     //{
       //  pthread_mutex_unlock(&(philo->r_fork->lock));
         //return (0);
    // }
-    pthread_mutex_lock(&philo->l_fork->lock);
+
     //philo->l_fork->av = 0;
     //printf("left %p ID %i\n", &( philo->r_fork), philo->id);
-    print_philo_state(TAKE_FORK, philo);
+
     return (1);
 }
 
