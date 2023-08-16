@@ -93,7 +93,7 @@ void    eat(t_philo *philo)
     usleep(philo->prg->eat_time);
     //printf("i am updating eatcount from philo : {%i}\n", philo->id);
     philo->eat_count++;
-    if (philo->eat_count == philo->prg->meals_nb)
+    if (philo->prg->meals_nb > 0 && philo->eat_count == philo->prg->meals_nb)
     {
         pthread_mutex_lock(&philo->prg->lock);
         philo->prg->finished++;
