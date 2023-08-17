@@ -26,6 +26,14 @@ bool    check_if_reached_num_meals(t_philo *philo)
     return (0);
 }
 
+/*
+sup = 1692302141994 time to die
+time 1692302143006
+
+before 1692301990832
+after 1692301991232
+
+*/
 bool	check_conditions_continue_thread(t_philo *philo)
 {
     if (philo->prg->dead || philo->prg->err)

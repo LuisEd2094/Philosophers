@@ -17,6 +17,7 @@ typedef struct s_forks
 {
 	int				philo_id;
 	int				ids[2];
+	int				fork_id;
 	pthread_mutex_t lock;
 }	t_fork;
 

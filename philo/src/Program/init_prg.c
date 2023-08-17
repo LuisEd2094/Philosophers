@@ -49,6 +49,7 @@ static void    init_forks(t_prg *prg)
     i = 0;
     while (i < prg->philo_num)
     {
+        prg->forks[i].fork_id = i;
         if (i != 0 && i != prg->philo_num - 1)
         {
             if (i % 2 == 0)

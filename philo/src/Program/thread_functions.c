@@ -16,7 +16,6 @@ void    *supervisor(void *philo_p)
         if (philo->prg->meals_nb > 0 && philo->prg->finished == philo->prg->philo_num )// || philo->eat_count == philo->prg->meals_nb)
             break;
         pthread_mutex_lock(&(philo->lock));
-        //printf("time since start:{%lu} {%lu} time_to_die {%lu} current time [%i] philo id\n", (get_time(philo->prg) - (philo->prg->start_time)),philo->time_to_die, get_time(philo->prg), philo->id);
         if ((time >= philo->time_to_die))
         {
             pthread_mutex_lock(&(philo->prg->lock));
@@ -45,10 +44,10 @@ void	*routine(void *philo_p)
     philo = (t_philo *)philo_p;
     update_num_threads(philo->prg, 1);
     while (!philo->prg->can_start)
-        usleep(10);
+        usleep(1);
     //printf("time to die%li current time%li death time %li", philo->prg->death_time, get_time(philo->prg), philo->time_to_die);
     //printf("Philo [%i] has started\n", philo->id);
-    philo->time_to_die = philo->prg->death_time + get_time(philo->prg);
+    philo->time_to_die = philo->prg->start_time;
     //printf("time to die %li current time %li death time %li\n", philo->prg->death_time, get_time(philo->prg), philo->time_to_die);
     if (!create_thread(&(philo->t1), &supervisor, (void *)philo))
     {
@@ -56,6 +55,8 @@ void	*routine(void *philo_p)
         return (NULL);
     }
     pthread_detach(philo->t1);
+    if (philo->id % 2 != 0)
+        usleep(philo->prg->eat_time);
     while (check_conditions_continue_thread(philo) && philo->can_continue)
     {
         if (!take_forks(philo))
