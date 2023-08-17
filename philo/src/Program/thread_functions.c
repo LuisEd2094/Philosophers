@@ -56,7 +56,13 @@ void	*routine(void *philo_p)
     }
     pthread_detach(philo->t1);
     if (philo->id % 2 != 0)
-        usleep(philo->prg->eat_time);
+    {
+        if (philo->prg->eat_time < philo->prg->death_time)
+            usleep(philo->prg->eat_time / 2);
+        else
+            usleep(philo->prg->death_time / 2);
+    }        
+
     while (check_conditions_continue_thread(philo) && philo->can_continue)
     {
         if (!take_forks(philo))
