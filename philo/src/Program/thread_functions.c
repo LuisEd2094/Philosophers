@@ -3,24 +3,26 @@
 void    *supervisor(void *philo_p)
 {
     t_philo *philo;
+    uint64_t time;
 
     philo = (t_philo *)philo_p;
     update_num_threads(philo->prg, 1);
     while (!(philo->prg->dead) && !(philo->prg->err) && (philo->prg->finished != philo->prg->philo_num))
     {
+        usleep(philo->prg->death_time * 1000);
+        time = get_time(philo->prg);
         if (philo->prg->meals_nb > 0 && philo->prg->finished == philo->prg->philo_num )// || philo->eat_count == philo->prg->meals_nb)
             break;
-        usleep(philo->prg->death_time * 1000);
         if (philo->prg->meals_nb > 0 && philo->prg->finished == philo->prg->philo_num )// || philo->eat_count == philo->prg->meals_nb)
             break;
         pthread_mutex_lock(&(philo->lock));
         //printf("time since start:{%lu} {%lu} time_to_die {%lu} current time [%i] philo id\n", (get_time(philo->prg) - (philo->prg->start_time)),philo->time_to_die, get_time(philo->prg), philo->id);
-        if ((get_time(philo->prg) >= philo->time_to_die))
+        if ((time >= philo->time_to_die))
         {
             pthread_mutex_lock(&(philo->prg->lock));
             if (philo->prg->dead == 0)
             {
-                printf("%lu %d %s\n", get_time(philo->prg) - (philo->prg->start_time), \
+                printf("%lu %d %s\n", time - (philo->prg->start_time), \
                 philo->id, DIED);   
                 philo->prg->dead = 1;
             }
