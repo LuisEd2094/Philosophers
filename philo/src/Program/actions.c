@@ -4,12 +4,17 @@ void    philo_sleep(t_philo *philo)
 {
     print_philo_state(IS_SLEEPING, philo);
     usleep(philo->prg->sleep_time);
+    if (philo->id % 2 != 0)
+        print_philo_state(IS_THINKING, philo);
 }
 
 void    drop_forks(t_philo *philo)
 {
     pthread_mutex_unlock(&(philo->l_fork->lock));
+    //printf("philo[%i] droped his left fork id :[%i]\n", philo->id, philo->l_fork->fork_id);
 	pthread_mutex_unlock(&(philo->r_fork->lock));
+    //printf("philo[%i] droped his right fork id :[%i]\n", philo->id, philo->r_fork->fork_id);
+
 }
 
 bool    waiting_for_fork(t_philo *philo)
@@ -33,12 +38,13 @@ bool    wait_for_fork(t_philo *philo, t_prg *prg)
 
 void    start_taking_forks(t_philo *philo, pthread_mutex_t *first, pthread_mutex_t *second)
 {
+    if (philo->id % 2 == 0) 
         print_philo_state(IS_THINKING, philo);
-        pthread_mutex_lock(first);
-        print_philo_state(TAKE_FORK, philo);
-        print_philo_state(IS_THINKING, philo);
-        pthread_mutex_lock(second);
-        print_philo_state(TAKE_FORK, philo);
+    pthread_mutex_lock(first);
+    print_philo_state(TAKE_FORK, philo);
+    print_philo_state(IS_THINKING, philo);
+    pthread_mutex_lock(second);
+    print_philo_state(TAKE_FORK, philo);
 }
 
 bool take_forks(t_philo *philo)
