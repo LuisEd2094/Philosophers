@@ -105,8 +105,9 @@ void    one_philo_case(t_prg *prg);
 void    work_more_one_philo(t_prg *prg);
 // THREAD FUNCTIONS //
 void	*routine(void *philo_pointer);
+void    *supervisor(void *philo_p);
 // ACTION FUNCTIONS //
-bool	take_forks(t_philo *philo);
+void	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
 void    drop_forks(t_philo *philo);
 void    philo_sleep(t_philo *philo);

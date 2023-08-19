@@ -6,7 +6,6 @@ static void    check_and_remove_white_space(char *argv)
             remove_white_space(argv);
 }
 
-
 void parse_arguments(int argc, char *argv[])
 {
     int i;
