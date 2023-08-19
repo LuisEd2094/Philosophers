@@ -3,40 +3,17 @@
 #include <errno.h>
 
 
-void destroy(pthread_mutex_t * mutex, char * str)
-{
-
-    /*int result = */pthread_mutex_destroy(mutex); 
-    if (str)
-        return;
-    //printf("CLOSED %s\n", str);
-    /*
-    if (result == 0) {
-        printf("Mutex destroyed successfully.\n");
-    } else {
-        if (result == EBUSY) {
-            printf("Cannot destroy the mutex. It's currently locked by a thread. %s\n", str);
-        } else if (result == EINVAL) {
-            printf("Invalid mutex object.\n");
-        } else {
-            printf("Error occurred while destroying the mutex. Error code: %d %s\n", result, str);
-        }
-    }*/
-
-}
-
 static void    close_mutex(t_prg *prg)
 {
     int i;
 
-    destroy(&(prg->lock),"Prg Lock");
+    pthread_mutex_destroy(&(prg->lock));
     i = -1;
     while (++i < prg->philo_num)
     {
-        destroy(&(prg->forks[i].lock), "Prg Fork");
-        destroy(&(prg->philos[i].lock), "Prg Philo");
+        pthread_mutex_destroy(&(prg->forks[i].lock));
+        pthread_mutex_destroy(&(prg->philos[i].lock));
     }
-
 }
 void free_mallocs(t_prg *prg)
 {
@@ -59,10 +36,9 @@ void    close_on_failed_init(t_prg *prg)
 void    close_prg(t_prg *prg)
 {
     while (prg->num_threads != 0)
-        usleep(1); 
+        usleep(1000); 
     close_mutex(prg);
     free_mallocs(prg);
-    //printf("Num threads %i meals number %i\n", prg->num_threads, prg->meals_nb);
     if (prg->err)
     {
         printf("%s", prg->err_msg);

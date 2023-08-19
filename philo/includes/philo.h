@@ -81,10 +81,6 @@ closing program.\n"
 # define DIED "died"
 
 
-void destroy(pthread_mutex_t * mutex, char * str);
-
-
-
 // PARSE ARGUMENTS API //
 void    parse_arguments(int argc, char *argv[]);
 //INIT FUNCTIONS //
@@ -114,8 +110,7 @@ void    philo_sleep(t_philo *philo);
 // THREAD HANDLE FUNCTIONS//
 void    update_num_threads(t_prg *prg, int value);
 bool    create_thread(pthread_t *tid, void *(*f)(void *), t_philo *philo_p);
-bool    check_if_reached_num_meals(t_philo *prg);
-bool	check_conditions_continue_thread(t_philo *prg);
+bool	check_conditions_continue_thread(t_philo *philo);
 
 
 

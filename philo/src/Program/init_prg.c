@@ -37,9 +37,6 @@ static void    malloc_data(t_prg *prg)
         prg->err_msg = MALLOC_ERR_MSSG;
         close_on_failed_init(prg);
     }
-   // i = 0;
-    /*while (i < prg->philo_num)
-        prg->tid[i++] = 0;*/
 }
 
 static void    init_forks(t_prg *prg)
@@ -77,7 +74,7 @@ static void    init_forks(t_prg *prg)
         if (!init_mutex(&prg->forks[i].lock, prg))
         {        
             while (--i >= 0)
-                destroy(&(prg->forks[i].lock), "fork");
+                pthread_mutex_destroy(&(prg->forks[i].lock));
             close_on_failed_init(prg);
         }
         prg->philos[i].l_fork = &prg->forks[i];
@@ -99,10 +96,10 @@ static void    init_philos(t_prg *prg)
         if (!init_mutex(&prg->philos[i].lock, prg))
         {        
             while (--i >= 0)
-                destroy(&(prg->philos[i].lock), "philos");
+                pthread_mutex_destroy(&(prg->philos[i].lock));
             i = prg->philo_num - 1;
             while (i >= 0)
-                destroy(&(prg->forks[i--].lock), "fork");
+                pthread_mutex_destroy(&(prg->forks[i--].lock));
             close_on_failed_init(prg);
         }
         prg->philos[i].prg = prg;

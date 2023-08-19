@@ -2,11 +2,9 @@
 
 void    work_more_one_philo(t_prg *prg)
 {
-    int         i;
-    //pthread_t   t0;
+    int i;
 
     i = 0;
-
     prg->can_start = 0;
     while (i < prg->philo_num)
     {
@@ -17,8 +15,4 @@ void    work_more_one_philo(t_prg *prg)
     }
     prg->start_time = get_time(prg);
     prg->can_start = 1;
-    //printf("Start Time %li\n", prg->start_time);
-    //while(check_conditions_continue_thread(prg))
-      //  usleep(0);
-    //close_prg(prg); 
 }

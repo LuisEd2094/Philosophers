@@ -18,25 +18,10 @@ bool    create_thread(pthread_t *tid, void *(*f)(void *), t_philo *philo_p)
     return (1);
 }
 
-bool    check_if_reached_num_meals(t_philo *philo)
-{
-    //printf("[%i] checked if number of meals\nfinished [%i]\nmeals_count [%i]\n",philo->prg->finished == philo->prg->meals_nb, philo->prg->finished, philo->prg->meals_nb);
-    if (philo->eat_count == philo->prg->meals_nb)
-        return (1);
-    return (0);
-}
-
-/*
-sup = 1692302141994 time to die
-time 1692302143006
-
-before 1692301990832
-after 1692301991232
-
-*/
 bool	check_conditions_continue_thread(t_philo *philo)
 {
-    if (philo->prg->dead || philo->prg->err)
+    if (philo->prg->dead || philo->prg->err || \
+        !philo->can_continue)
         return (0);
     return (1); 
 }
