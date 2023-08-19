@@ -35,7 +35,6 @@ void    close_on_failed_init(t_prg *prg)
 
 void    close_prg(t_prg *prg)
 {
-    printf("I am in close Program\n");
     while (prg->num_threads != 0)
         usleep(1000); 
     close_mutex(prg);
