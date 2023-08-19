@@ -9,7 +9,8 @@ uint64_t	get_time(t_prg *prg)
 	if (gettimeofday(&tv, NULL))
 		{
             prg->err = TIME_ERROR;
-            print_err_prg(TIME_ERR_MSG, prg);
+			prg->err_msg = TIME_ERR_MSG;
+			return (0);
         }
 	return ((uint64_t)(tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }

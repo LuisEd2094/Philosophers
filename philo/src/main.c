@@ -11,5 +11,6 @@ int main(int argc, char *argv[])
         one_philo_case(&prg);
     else
         work_more_one_philo(&prg);
+    printf("I am back to main\n");
     close_prg(&prg);    
 }

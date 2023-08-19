@@ -87,7 +87,6 @@ void    parse_arguments(int argc, char *argv[]);
 void    init(t_prg *prg, char **argv, int argc);
 bool	init_mutex(pthread_mutex_t *thread, t_prg *prg);
 // PRINT ERR FUNCTIONS //
-void    print_err_prg(char *err, t_prg *prg);
 // CLOSE PROGRAM FUNCTIONS //
 void    close_prg(t_prg *prg);
 void    close_on_failed_init(t_prg *prg);
