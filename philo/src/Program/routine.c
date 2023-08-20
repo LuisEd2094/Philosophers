@@ -29,8 +29,17 @@ void	*routine(void *philo_p)
 
     philo = (t_philo *)philo_p;
     update_num_threads(philo->prg, 1);
-    while (!philo->prg->can_start)
-        usleep(1);
+    while (1)
+    {
+        pthread_mutex_lock(&(philo->prg->lock));
+        if (philo->prg->can_start)
+        {
+            pthread_mutex_unlock(&(philo->prg->lock));
+            break;
+        }
+        pthread_mutex_unlock(&(philo->prg->lock));
+
+    }
     philo->time_to_die = philo->prg->start_time + \
                         (philo->prg->death_time / 1000);
     if (!create_thread(&(philo->t1), &supervisor, (void *)philo))
