@@ -6,7 +6,7 @@ void    handle_death_of_philo(t_philo *philo, uint64_t time)
     pthread_mutex_lock(&(philo->prg->lock));
     if (philo->prg->dead == 0)
     {
-        printf("%llu %d %s\n", time - (philo->prg->start_time), \
+        printf("%lu %d %s\n", time - (philo->prg->start_time), \
         philo->id, DIED);   
         philo->prg->dead = 1;
     }

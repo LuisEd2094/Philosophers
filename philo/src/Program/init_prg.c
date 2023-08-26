@@ -4,9 +4,9 @@
 static void    init_prg(t_prg *prg, char **argv, int argc)
 {
     prg->philo_num = ft_atoi(argv[1]);
-    prg->death_time = (uint64_t) ft_atoi(argv[2]) * 1000;
-    prg->eat_time = (uint64_t) ft_atoi(argv[3]) * 1000;
-	prg->sleep_time = (uint64_t) ft_atoi(argv[4]) * 1000;
+    prg->death_time = ft_atoi(argv[2]) * 1000;
+    prg->eat_time =  ft_atoi(argv[3]) * 1000;
+	prg->sleep_time =  ft_atoi(argv[4]) * 1000;
     if (argc == 6)
 		prg->meals_nb = ft_atoi(argv[5]);
     else

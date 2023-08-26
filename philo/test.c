@@ -42,9 +42,19 @@ int main() {
 
     gettimeofday(&tv,NULL);
 
-    uint64_t time= (tv.tv_sec * (uint64_t)1000) + (tv.tv_usec / 1000);
+    uint64_t f_time=  (uint64_t)(tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 
-    printf("%li %li   %li\n", tv.tv_sec, tv.tv_usec, time);
+    printf("%li %li   %li\n", tv.tv_sec, tv.tv_usec, f_time);
+
+    usleep(200000);
+
+    gettimeofday(&tv,NULL);
+
+    uint64_t s_time = (uint64_t)(tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+
+    printf("%li %li   %li\n", tv.tv_sec, tv.tv_usec, s_time);
+
+    printf("%li\n", s_time - f_time);
 
     return 0;
 }

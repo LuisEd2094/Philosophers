@@ -10,6 +10,7 @@ void    work_more_one_philo(t_prg *prg)
     {
         if (!create_thread(&(prg->tid[i]), &(routine), &(prg->philos[i])))
             close_prg(prg);
+        //usleep(1);
         pthread_detach((prg->tid[i]));
         //printf("%i ID \n", prg->philos[i].id);
         usleep(1);

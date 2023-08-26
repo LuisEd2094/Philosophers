@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdint.h>
 
-int	ft_atoi(const char *nptr)
+
+uint64_t	ft_atoi(const char *nptr)
 {
-	int	nmr;
+	uint64_t	nmr;
 	int	i;
 	int	sign;
 

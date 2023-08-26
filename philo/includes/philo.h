@@ -46,9 +46,9 @@ typedef struct s_prg
 	bool			can_start;
     int				finished;
     t_philo         *philos;
-	int		death_time;
-	int		eat_time;
-	int		sleep_time;
+	uint64_t		death_time;
+	uint64_t		eat_time;
+	uint64_t		sleep_time;
 	uint64_t		start_time;
     t_fork			*forks;
     pthread_mutex_t lock;

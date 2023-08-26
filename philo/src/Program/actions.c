@@ -35,8 +35,11 @@ void take_forks(t_philo *philo)
 
 void    eat(t_philo *philo)
 {
+    uint64_t time;
+
     pthread_mutex_lock(&philo->lock);
-    philo->time_to_die = get_time(philo->prg) + \
+    time = get_time(philo->prg);
+    philo->time_to_die = time + \
                          (philo->prg->death_time / 1000);
     print_philo_state(IS_EATING, philo);
     usleep(philo->prg->eat_time);
