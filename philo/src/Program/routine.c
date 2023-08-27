@@ -6,7 +6,7 @@ void check_if_odd_philo_to_sleep(t_philo *philo)
     {            
         print_philo_state(IS_THINKING, philo);
         if (philo->prg->eat_time < philo->prg->death_time)
-            usleep(philo->prg->eat_time);
+            usleep(philo->prg->eat_time / 2);
         else
             usleep(philo->prg->death_time);
     }    

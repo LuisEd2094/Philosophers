@@ -21,7 +21,9 @@ void* thread_function(void* arg) {
     }
     return NULL;
 }
-
+       #include <stdio.h>
+       #include <readline/readline.h>
+       #include <readline/history.h>
 int main() {
     pthread_t thread1, thread2;
     int thread1_id = 1, thread2_id = 2;

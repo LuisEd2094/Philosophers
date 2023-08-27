@@ -18,6 +18,7 @@ bool    create_thread(pthread_t *tid, void *(*f)(void *), t_philo *philo_p)
     return (1);
 }
 
+
 bool	check_conditions_continue_thread(t_philo *philo)
 {
     if (philo->prg->dead || philo->prg->err || \

@@ -27,10 +27,7 @@ void    get_forks(t_philo *philo, pthread_mutex_t *frst, pthread_mutex_t *scnd)
 
 void take_forks(t_philo *philo)
 {
-    if (philo->id != philo->prg->philo_num)
-        get_forks(philo, &(philo->l_fork->lock), &(philo->r_fork->lock));
-    else
-        get_forks(philo, &(philo->r_fork->lock), &(philo->l_fork->lock));
+    get_forks(philo, &(philo->l_fork->lock), &(philo->r_fork->lock));
 }
 
 void    eat(t_philo *philo)
@@ -42,8 +39,8 @@ void    eat(t_philo *philo)
     philo->time_to_die = time + \
                          (philo->prg->death_time / 1000);
     print_philo_state(IS_EATING, philo);
-    usleep(philo->prg->eat_time);
     philo->eat_count++;
+    usleep(philo->prg->eat_time);
     if (philo->prg->meals_nb > 0 && \
         philo->eat_count == philo->prg->meals_nb)
     {
@@ -54,3 +51,4 @@ void    eat(t_philo *philo)
     }
     pthread_mutex_unlock(&philo->lock);
 }
+
