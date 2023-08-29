@@ -8,16 +8,10 @@
 # include <unistd.h>
 # include <stdio.h>
 
-
-
-
 struct	s_prg;
 
 typedef struct s_forks
 {
-	int				philo_id;
-	int				ids[2];
-	int				fork_id;
 	pthread_mutex_t lock;
 }	t_fork;
 
@@ -54,16 +48,13 @@ typedef struct s_prg
     pthread_mutex_t lock;
 } t_prg;
 
-
 typedef enum s_error
 {
 	INIT_MUTEX_ERROR = 10,
 	MALLOC_ERROR,
 	TIME_ERROR,
 	THREAD_CREATE_ERROR
-
 } t_error_code;
-
 
 # define INIT_MUTEX_ERR_MSSG "There was an error when init a new mutex, \
 closing program.\n"
@@ -80,7 +71,6 @@ closing program.\n"
 # define IS_THINKING "is thinking"
 # define DIED "died"
 
-
 // PARSE ARGUMENTS API //
 void    parse_arguments(int argc, char *argv[]);
 //INIT FUNCTIONS //
@@ -91,7 +81,6 @@ bool	init_mutex(pthread_mutex_t *thread, t_prg *prg);
 void    close_prg(t_prg *prg);
 void    close_on_failed_init(t_prg *prg);
 void	free_mallocs(t_prg *prg);
-
 // GET CURRENT TIMETIME //
 uint64_t	get_time(t_prg *prg);
 // ONE PHILE CASE //
@@ -110,12 +99,7 @@ void    philo_sleep(t_philo *philo);
 void    update_num_threads(t_prg *prg, int value);
 bool    create_thread(pthread_t *tid, void *(*f)(void *), t_philo *philo_p);
 bool	check_conditions_continue_thread(t_philo *philo);
-
-
-
 // PRINT MESSAGES //
 void    print_philo_state(char *str, t_philo *philo);
-
-
 
 #endif

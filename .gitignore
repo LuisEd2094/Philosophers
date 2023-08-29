@@ -1,5 +1,4 @@
 *.o
 *.d
-philo/philo
 .vscode
 test.txt

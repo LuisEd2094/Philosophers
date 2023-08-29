@@ -6,7 +6,7 @@ void    handle_death_of_philo(t_philo *philo, uint64_t time)
     pthread_mutex_lock(&(philo->prg->lock));
     if (philo->prg->dead == 0)
     {
-        printf("%llu %d %s\n", time - (philo->prg->start_time), \
+        printf("%lu %d %s\n", time - (philo->prg->start_time), \
         philo->id, DIED);   
         philo->prg->dead = 1;
     }
@@ -41,7 +41,7 @@ void    *supervisor(void *philo_p)
     update_num_threads(philo->prg, 1);
     while (check_if_super_continue(philo) && !chk_phi_done_meals(philo))
     {
-        usleep(philo->prg->sleep_time / 2);
+        //usleep(philo->prg->sleep_time / 2);
         pthread_mutex_lock(&(philo->lock));
         time = get_time(philo->prg);
         if ((time >= philo->time_to_die))
