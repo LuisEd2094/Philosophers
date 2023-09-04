@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsoto-do <lsoto-do@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/04 11:02:32 by lsoto-do          #+#    #+#             */
+/*   Updated: 2023/09/04 11:03:47 by lsoto-do         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -12,7 +24,7 @@ struct	s_prg;
 
 typedef struct s_forks
 {
-	pthread_mutex_t lock;
+	pthread_mutex_t	lock;
 }	t_fork;
 
 typedef struct s_philo
@@ -30,23 +42,23 @@ typedef struct s_philo
 
 typedef struct s_prg
 {
-    pthread_t       *tid;
+	pthread_t		*tid;
 	int				num_threads;
-    int             philo_num;
-    int             meals_nb;
+	int				philo_num;
+	int				meals_nb;
 	int				err;
 	char			*err_msg;
-    bool            dead;
+	bool			dead;
 	bool			can_start;
-    int				finished;
-    t_philo         *philos;
+	int				finished;
+	t_philo			*philos;
 	uint64_t		death_time;
 	uint64_t		eat_time;
 	uint64_t		sleep_time;
 	uint64_t		start_time;
-    t_fork			*forks;
-    pthread_mutex_t lock;
-} t_prg;
+	t_fork			*forks;
+	pthread_mutex_t	lock;
+}	t_prg;
 
 typedef enum s_error
 {
@@ -54,7 +66,7 @@ typedef enum s_error
 	MALLOC_ERROR,
 	TIME_ERROR,
 	THREAD_CREATE_ERROR
-} t_error_code;
+}	t_error_code;
 
 # define INIT_MUTEX_ERR_MSSG "There was an error when init a new mutex, \
 closing program.\n"
@@ -72,34 +84,34 @@ closing program.\n"
 # define DIED "died"
 
 // PARSE ARGUMENTS API //
-void    parse_arguments(int argc, char *argv[]);
+void		parse_arguments(int argc, char *argv[]);
 //INIT FUNCTIONS //
-void    init(t_prg *prg, char **argv, int argc);
-bool	init_mutex(pthread_mutex_t *thread, t_prg *prg);
+void		init(t_prg *prg, char **argv, int argc);
+bool		init_mutex(pthread_mutex_t *thread, t_prg *prg);
 // PRINT ERR FUNCTIONS //
 // CLOSE PROGRAM FUNCTIONS //
-void    close_prg(t_prg *prg);
-void    close_on_failed_init(t_prg *prg);
-void	free_mallocs(t_prg *prg);
+void		close_prg(t_prg *prg);
+void		close_on_failed_init(t_prg *prg);
+void		free_mallocs(t_prg *prg);
 // GET CURRENT TIMETIME //
 uint64_t	get_time(t_prg *prg);
 // ONE PHILE CASE //
-void    one_philo_case(t_prg *prg);
+void		one_philo_case(t_prg *prg);
 // ELSE CASE //
-void    work_more_one_philo(t_prg *prg);
+void		work_more_one_philo(t_prg *prg);
 // THREAD FUNCTIONS //
-void	*routine(void *philo_pointer);
-void    *supervisor(void *philo_p);
+void		*routine(void *philo_pointer);
+void		*supervisor(void *philo_p);
 // ACTION FUNCTIONS //
-void	take_forks(t_philo *philo);
-void	eat(t_philo *philo);
-void    drop_forks(t_philo *philo);
-void    philo_sleep(t_philo *philo);
+void		take_forks(t_philo *philo);
+void		eat(t_philo *philo);
+void		drop_forks(t_philo *philo);
+void		philo_sleep(t_philo *philo);
 // THREAD HANDLE FUNCTIONS//
-void    update_num_threads(t_prg *prg, int value);
-bool    create_thread(pthread_t *tid, void *(*f)(void *), t_philo *philo_p);
-bool	check_conditions_continue_thread(t_philo *philo);
+void		*update_num_threads(t_prg *prg, int value);
+bool		create_thread(pthread_t *tid, void *(*f)(void *), t_philo *philo_p);
+bool		check_conditions_continue_thread(t_philo *philo);
 // PRINT MESSAGES //
-void    print_philo_state(char *str, t_philo *philo);
+void		print_philo_state(char *str, t_philo *philo);
 
 #endif

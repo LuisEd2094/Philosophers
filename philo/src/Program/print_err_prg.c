@@ -1,40 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   print_err_prg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsoto-do <lsoto-do@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 10:59:52 by lsoto-do          #+#    #+#             */
-/*   Updated: 2023/09/04 10:57:32 by lsoto-do         ###   ########.fr       */
+/*   Created: 2023/09/04 10:47:30 by lsoto-do          #+#    #+#             */
+/*   Updated: 2023/09/04 10:47:36 by lsoto-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdint.h>
+#include <philo.h>
 
-uint64_t	ft_atoi(const char *nptr)
+void	print_err_prg(char *err, t_prg *prg)
 {
-	uint64_t	nmr;
-	int			i;
-	int			sign;
-
-	i = 0;
-	sign = 1;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
-		i++;
-	if (nptr[i] == '-')
-	{
-		sign = -1;
-		i++;
-	}
-	else if (nptr[i] == '+')
-		i++;
-	nmr = 0;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		nmr = (nmr * 10) + (nptr[i] - '0');
-		i++;
-	}
-	return (nmr * sign);
+	printf("%s", err);
+	close_prg(prg);
 }
