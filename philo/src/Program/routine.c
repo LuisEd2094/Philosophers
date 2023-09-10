@@ -52,8 +52,6 @@ void	*routine(void *philo_p)
 	}
 	philo->time_to_die = philo->prg->start_time + \
 						(philo->prg->death_time / 1000);
-	if (!create_thread(&(philo->t1), &supervisor, (void *)philo))
-		return (update_num_threads(philo->prg, -1));
 	pthread_detach(philo->t1);
 	check_if_odd_philo_to_sleep(philo);
 	while (check_conditions_continue_thread(philo))

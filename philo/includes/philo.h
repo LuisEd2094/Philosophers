@@ -101,7 +101,6 @@ void		one_philo_case(t_prg *prg);
 void		work_more_one_philo(t_prg *prg);
 // THREAD FUNCTIONS //
 void		*routine(void *philo_pointer);
-void		*supervisor(void *philo_p);
 // ACTION FUNCTIONS //
 void		take_forks(t_philo *philo);
 void		eat(t_philo *philo);
@@ -113,5 +112,6 @@ bool		create_thread(pthread_t *tid, void *(*f)(void *), t_philo *philo_p);
 bool		check_conditions_continue_thread(t_philo *philo);
 // PRINT MESSAGES //
 void		print_philo_state(char *str, t_philo *philo);
+void		supervisor(t_prg *prg);
 
 #endif

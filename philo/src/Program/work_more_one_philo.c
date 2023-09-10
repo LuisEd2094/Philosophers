@@ -29,4 +29,5 @@ void	work_more_one_philo(t_prg *prg)
 	prg->start_time = get_time(prg);
 	prg->can_start = 1;
 	pthread_mutex_unlock(&(prg->lock));
+	supervisor(prg);
 }
