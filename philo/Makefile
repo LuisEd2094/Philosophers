@@ -1,5 +1,5 @@
 NAME        = philo
-CFLAGS      = -Wall -Wextra  -Werror -g
+CFLAGS      = -Wall -Wextra  -Werror -g -Wall -Wextra  -Werror -g -fsanitize=thread
 RM          = rm -f
 SRCS_PATH           = src/
 OBJS_PATH           = obj/
