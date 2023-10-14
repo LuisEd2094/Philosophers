@@ -51,6 +51,8 @@ void	eat(t_philo *philo)
 	philo->time_to_die = time + \
 						(philo->prg->death_time / 1000);
 	philo->eat_count++;
+	print_philo_state(IS_EATING, philo);
+
 	if (philo->prg->meals_nb > 0 && \
 		philo->eat_count == philo->prg->meals_nb)
 	{
@@ -60,7 +62,6 @@ void	eat(t_philo *philo)
 		philo->can_continue = 0;
 	}
 	pthread_mutex_unlock(&philo->lock);
-	print_philo_state(IS_EATING, philo);
 	usleep(philo->prg->eat_time);
 
 }
