@@ -47,8 +47,14 @@ void	close_on_failed_init(t_prg *prg)
 
 void	close_prg(t_prg *prg)
 {
-	while (prg->num_threads != 0)
+	while (1)
+	{
+		pthread_mutex_lock(&(prg->lock));
+		if (prg->num_threads == 0)
+			break;
+		pthread_mutex_unlock(&(prg->lock));
 		usleep(1000); 
+	}
 	close_mutex(prg);
 	free_mallocs(prg);
 	if (prg->err)

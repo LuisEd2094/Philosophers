@@ -1,7 +1,7 @@
 NAME        = philo
-CFLAGS      = -Wall -Wextra  -Werror -g #-fsanitize=thread #-fsanitize=address 
+CFLAGS      = -Wall -Wextra  -Werror -g  -fsanitize=address #-fsanitize=thread
 RM          = rm -f
-CC			= cc
+CC			= gcc
 SRCS_PATH           = src/
 OBJS_PATH           = obj/
 ARGS_PATH			= ParseArguments/
@@ -64,7 +64,7 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c | $(MAKE_OBJ_DIR) $(DEPS_PATH)
 
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(INCS) $(OBJS) -pthread -lpthread -o $(NAME) 
+	@$(CC) $(CFLAGS) $(INCS) $(OBJS) -pthread -o $(NAME)  
 	@echo "$(LIGHT_GREEN)Created $(NAME) executable$(DEF_COLOR)"
 
 
