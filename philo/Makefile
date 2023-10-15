@@ -1,5 +1,5 @@
 NAME        = philo
-CFLAGS      = -Wall -Wextra  -Werror -g 
+CFLAGS      = -Wall -Wextra  -Werror -g
 RM          = rm -f
 CC			= cc
 SRCS_PATH           = src/
@@ -64,7 +64,7 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c | $(MAKE_OBJ_DIR) $(DEPS_PATH)
 
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(INCS) $(OBJS) -pthread -o $(NAME)  
+	@$(CC) $(CFLAGS) $(INCS) $(OBJS) -o $(NAME)  
 	@echo "$(LIGHT_GREEN)Created $(NAME) executable$(DEF_COLOR)"
 
 
