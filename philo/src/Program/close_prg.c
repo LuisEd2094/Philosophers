@@ -6,7 +6,7 @@
 /*   By: lsoto-do <lsoto-do@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 10:45:17 by lsoto-do          #+#    #+#             */
-/*   Updated: 2023/09/04 10:45:55 by lsoto-do         ###   ########.fr       */
+/*   Updated: 2023/10/15 13:27:36 by lsoto-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	close_mutex(t_prg *prg)
 {
 	int	i;
 
-	pthread_mutex_destroy(&(prg->lock));
 	i = -1;
 	while (++i < prg->philo_num)
 	{
 		pthread_mutex_destroy(&(prg->forks[i].lock));
 		pthread_mutex_destroy(&(prg->philos[i].lock));
 	}
+	pthread_mutex_destroy(&(prg->lock));
 }
 
 void	free_mallocs(t_prg *prg)
@@ -47,14 +47,6 @@ void	close_on_failed_init(t_prg *prg)
 
 void	close_prg(t_prg *prg)
 {
-	while (1)
-	{
-		pthread_mutex_lock(&(prg->lock));
-		if (prg->num_threads == 0)
-			break;
-		pthread_mutex_unlock(&(prg->lock));
-		usleep(1000); 
-	}
 	close_mutex(prg);
 	free_mallocs(prg);
 	if (prg->err)

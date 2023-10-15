@@ -43,8 +43,8 @@ typedef struct s_philo
 typedef struct s_prg
 {
 	pthread_t		*tid;
-	int				num_threads;
 	int				philo_num;
+	int				done;
 	int				meals_nb;
 	int				err;
 	char			*err_msg;
@@ -107,9 +107,10 @@ void		eat(t_philo *philo);
 void		drop_forks(t_philo *philo);
 void		philo_sleep(t_philo *philo);
 // THREAD HANDLE FUNCTIONS//
-void		*update_num_threads(t_prg *prg, int value);
 bool		create_thread(pthread_t *tid, void *(*f)(void *), t_philo *philo_p);
 bool		check_conditions_continue_thread(t_philo *philo);
+void		get_locks(t_philo *philo);
+void		*unlock_locks(t_philo *philo);
 // PRINT MESSAGES //
 void		print_philo_state(char *str, t_philo *philo);
 void		supervisor(t_prg *prg);

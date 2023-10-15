@@ -6,7 +6,7 @@
 /*   By: lsoto-do <lsoto-do@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 10:59:11 by lsoto-do          #+#    #+#             */
-/*   Updated: 2023/09/04 11:01:30 by lsoto-do         ###   ########.fr       */
+/*   Updated: 2023/10/15 13:27:54 by lsoto-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ int	main(int argc, char *argv[])
 	else
 		work_more_one_philo(&prg);
 	close_prg(&prg);
+	return (0);
 }

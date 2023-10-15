@@ -27,7 +27,7 @@ static void	init_prg(t_prg *prg, char **argv, int argc)
 	prg->finished = 0;
 	prg->err = 0;
 	prg->start_time = 0;
-	prg->num_threads = 0;
+	prg->done = 0;
 	if (!init_mutex(&(prg->lock), prg))
 	{
 		printf("%s", prg->err_msg);
@@ -38,8 +38,8 @@ static void	init_prg(t_prg *prg, char **argv, int argc)
 static void	malloc_data(t_prg *prg)
 {
 	prg->tid = (pthread_t *)malloc(sizeof(pthread_t) * prg->philo_num);
-	prg->forks = (t_fork *)malloc(sizeof (t_fork) * prg->philo_num);
-	prg->philos = (t_philo *)malloc(sizeof (t_philo) * \
+	prg->forks = (t_fork *)malloc(sizeof(t_fork) * prg->philo_num);
+	prg->philos = (t_philo *)malloc(sizeof(t_philo) * \
 	prg->philo_num);
 	if (!prg->tid || !prg->forks || !prg->philos)
 	{

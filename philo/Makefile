@@ -1,7 +1,7 @@
 NAME        = philo
-CFLAGS      = -Wall -Wextra  -Werror -g  -fsanitize=address #-fsanitize=thread
+CFLAGS      = -Wall -Wextra  -Werror -g 
 RM          = rm -f
-CC			= gcc
+CC			= cc
 SRCS_PATH           = src/
 OBJS_PATH           = obj/
 ARGS_PATH			= ParseArguments/

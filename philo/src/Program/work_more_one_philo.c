@@ -22,7 +22,6 @@ void	work_more_one_philo(t_prg *prg)
 	{
 		if (!create_thread(&(prg->tid[i]), &(routine), &(prg->philos[i])))
 			close_prg(prg);
-		pthread_detach((prg->tid[i]));
 		i++;
 	}
 	pthread_mutex_lock(&(prg->lock));
@@ -30,4 +29,7 @@ void	work_more_one_philo(t_prg *prg)
 	prg->can_start = 1;
 	pthread_mutex_unlock(&(prg->lock));
 	supervisor(prg);
+	i = 0;
+	while (i < prg->philo_num)
+		pthread_join(prg->tid[i++], NULL);
 }
