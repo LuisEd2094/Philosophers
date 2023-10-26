@@ -1,0 +1,248 @@
+
+**************************************************************
+*                          CARE!                             *
+*                                                            * 
+* This tester doesnt work if ur readline prompt have '\n'    *
+*                                                            *
+**************************************************************
+
+---------------------------------------------> test [263]
+|  CMD: ->ls -l | cat -e<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->total 1408$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona       5 Oct 26 17:53 &4$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    4864 Oct 26 16:18 README.md$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   50352 Oct 26 17:56 cleaner$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    2326 Oct 26 16:18 cleaner.c$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   49424 Oct 26 17:56 echo$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona      21 Oct 26 17:53 file2$$
+| -rwxrwxrwx  1 lsoto-do  2022_barcelona  549456 Oct 26 17:56 minishell$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   26106 Oct 26 16:18 mpanic.sh$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    8909 Oct 26 17:57 my_history.txt$$
+| drwxr-xr-x  6 lsoto-do  2022_barcelona     204 Oct 26 16:18 test$$
+| drwxr-xr-x  8 lsoto-do  2022_barcelona     272 Oct 26 17:57 traces$$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->total 1408$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona       5 Oct 26 17:53 &4$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    4864 Oct 26 16:18 README.md$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   50352 Oct 26 17:56 cleaner$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    2326 Oct 26 16:18 cleaner.c$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   49424 Oct 26 17:56 echo$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona      21 Oct 26 17:53 file2$$
+| -rwxrwxrwx  1 lsoto-do  2022_barcelona  549456 Oct 26 17:56 minishell$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   26106 Oct 26 16:18 mpanic.sh$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    8894 Oct 26 17:57 my_history.txt$$
+| drwxr-xr-x  6 lsoto-do  2022_barcelona     204 Oct 26 16:18 test$$
+| drwxr-xr-x  8 lsoto-do  2022_barcelona     272 Oct 26 17:57 traces$$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [264]
+|  CMD: ->ls -l | cat -e | cat | cat | cat<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->total 1408$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona       5 Oct 26 17:53 &4$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    4864 Oct 26 16:18 README.md$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   50352 Oct 26 17:56 cleaner$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    2326 Oct 26 16:18 cleaner.c$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   49424 Oct 26 17:56 echo$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona      21 Oct 26 17:53 file2$$
+| -rwxrwxrwx  1 lsoto-do  2022_barcelona  549456 Oct 26 17:56 minishell$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   26106 Oct 26 16:18 mpanic.sh$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    8942 Oct 26 17:57 my_history.txt$$
+| drwxr-xr-x  6 lsoto-do  2022_barcelona     204 Oct 26 16:18 test$$
+| drwxr-xr-x  8 lsoto-do  2022_barcelona     272 Oct 26 17:57 traces$$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->total 1408$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona       5 Oct 26 17:53 &4$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    4864 Oct 26 16:18 README.md$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   50352 Oct 26 17:56 cleaner$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    2326 Oct 26 16:18 cleaner.c$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   49424 Oct 26 17:56 echo$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona      21 Oct 26 17:53 file2$$
+| -rwxrwxrwx  1 lsoto-do  2022_barcelona  549456 Oct 26 17:56 minishell$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   26106 Oct 26 16:18 mpanic.sh$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    8909 Oct 26 17:57 my_history.txt$$
+| drwxr-xr-x  6 lsoto-do  2022_barcelona     204 Oct 26 16:18 test$$
+| drwxr-xr-x  8 lsoto-do  2022_barcelona     272 Oct 26 17:57 traces$$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [265]
+|  CMD: ->ls -l | cat -e | cat -e | cat -e | cat -e<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->total 1408$$$$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona       5 Oct 26 17:53 &4$$$$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    4864 Oct 26 16:18 README.md$$$$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   50352 Oct 26 17:56 cleaner$$$$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    2326 Oct 26 16:18 cleaner.c$$$$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   49424 Oct 26 17:56 echo$$$$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona      21 Oct 26 17:53 file2$$$$$
+| -rwxrwxrwx  1 lsoto-do  2022_barcelona  549456 Oct 26 17:56 minishell$$$$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   26106 Oct 26 16:18 mpanic.sh$$$$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    8984 Oct 26 17:57 my_history.txt$$$$$
+| drwxr-xr-x  6 lsoto-do  2022_barcelona     204 Oct 26 16:18 test$$$$$
+| drwxr-xr-x  8 lsoto-do  2022_barcelona     272 Oct 26 17:57 traces$$$$$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->total 1408$$$$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona       5 Oct 26 17:53 &4$$$$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    4864 Oct 26 16:18 README.md$$$$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   50352 Oct 26 17:56 cleaner$$$$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    2326 Oct 26 16:18 cleaner.c$$$$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   49424 Oct 26 17:56 echo$$$$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona      21 Oct 26 17:53 file2$$$$$
+| -rwxrwxrwx  1 lsoto-do  2022_barcelona  549456 Oct 26 17:56 minishell$$$$$
+| -rwxr-xr-x  1 lsoto-do  2022_barcelona   26106 Oct 26 16:18 mpanic.sh$$$$$
+| -rw-r--r--  1 lsoto-do  2022_barcelona    8942 Oct 26 17:57 my_history.txt$$$$$
+| drwxr-xr-x  6 lsoto-do  2022_barcelona     204 Oct 26 16:18 test$$$$$
+| drwxr-xr-x  8 lsoto-do  2022_barcelona     272 Oct 26 17:57 traces$$$$$<-
+|
+|--- STDERR:
+| -><-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [271]
+|  CMD: ->ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->&4$
+| README.md$
+| cleaner$
+| cleaner.c$
+| echo$
+| file2$
+| minishell$
+| mpanic.sh$
+| my_history.txt$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->minishell: pipe: Error with pipes: Too many open files$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [272]
+|  CMD: ->ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->&4$
+| README.md$
+| cleaner$
+| cleaner.c$
+| echo$
+| file2$
+| minishell$
+| mpanic.sh$
+| my_history.txt$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->minishell: pipe: Error with pipes: Too many open files$<-
+|
+---------------------------------------------<
+
+---------------------------------------------> test [273]
+|  CMD: ->ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls |ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls | ls<-
+|--------------------------------
+|  EXPECTED (BASH OUTP)  |  exit status: (0)
+|
+|--- STDOUT:
+| ->&4$
+| README.md$
+| cleaner$
+| cleaner.c$
+| echo$
+| file2$
+| minishell$
+| mpanic.sh$
+| my_history.txt$
+| test$
+| traces$<-
+|
+|--- STDERR:
+| -><-
+|
+|--- COMPARED STR:
+| -><-
+|--------------------------------
+|--->FOUND (MINISHELL OUTP)  |  exit status: (1)
+|
+|--- STDOUT:
+| -><-
+|
+|--- STDERR:
+| ->minishell: pipe: Error with pipes: Too many open files$<-
+|
+---------------------------------------------<
+
